@@ -1,0 +1,71 @@
+select.state,
+input.zipcode {
+  width: 70px;
+}
+.horizontal_element {
+	display: inline
+}
+.login {
+  position:absolute;
+  top:15px;
+  right:15px;
+}
+.signup {
+  padding:10px 20px 20px 20px;
+  background:#fff;
+  .border-radius(@baseBorderRadius);
+  form {
+    margin:0;
+    padding:0;
+  }
+  .checkbox {
+    display:block;
+    margin-top:10px;
+  }
+  &.why {
+    background:url(/assets/developers/bg-signup.png) bottom center no-repeat @color2;
+    color:#fff;
+    legend {
+      color:@color1;
+      border-bottom-color:darken(@color2, 10%);
+    }
+    li {
+      margin-top:5px;
+    }
+  }
+  .oauth {
+    margin:-5px 0 20px 0;
+    a {
+      float:left;
+      width:43%;
+      i {
+        padding-right:7px;
+        border-right:solid 1px #ccc;
+      }
+    }
+    a:last-child {
+      margin-left:4%;
+    }
+  }
+  .or {
+    margin:10px 0;
+    padding-top:10px;
+    border-top:solid 1px lighten(@color5, 10%);
+    text-align:center;
+  }
+}
+.brand-wrapper {
+  border-top:solid 1px lighten(@color1, 5%);
+  margin-top:20px;
+  padding-top:20px;
+  margin-bottom:25px;
+  &.bottom {
+    border-top:0;
+  }
+}
+.disclaimer {
+  margin-top:20px;
+  font-size:13px;
+  line-height:16px;
+  color:lighten(@color1, 25%);
+}

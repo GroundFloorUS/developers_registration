@@ -1,0 +1,25 @@
+<div class="navbar sub-nav navbar-inverse navbar-fixed-top" id="sub-nav">
+  <div class="navbar-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <a class="brand" href="http://indiana.groundfloor.us/explore.html">Explore&nbsp;&nbsp;<i class="icon-chevron-right"></i></a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target="#sub-nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="nav-collapse collapse" id="sub-nav-collapse">
+            <ul class="nav">
+              <li class="<%= params[:cms_path] == "explore" ? "active" : ""%>"><a href="/explore.html">Property</a></li>
+              <li class="<%= params[:cms_path] == "explore/floor-plans" ? "active" : ""%>"><a href="/explore/floor-plans.html">Floor Plans</a></li>
+              <li class="<%= params[:cms_path] == "explore/location" ? "active" : ""%>"><a href="/explore/location.html">Location</a></li>
+              <li class="<%= params[:cms_path] == "explore/terra-haute" ? "active" : ""%>"><a href="/explore/terre-haute.html">Terre Haute</a></li>
+              <li class="<%= params[:cms_path] == "explore/isu" ? "active" : ""%>"><a href="/explore/isu.html">ISU</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

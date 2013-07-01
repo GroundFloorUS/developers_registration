@@ -1,0 +1,31 @@
+%h1 Listing investments
+
+%table
+  %tr
+    %th User
+    %th Prospect quantity
+    %th Prospected at
+    %th Prospected price
+    %th Commited quantity
+    %th Commited at
+    %th Commited price
+    %th
+    %th
+    %th
+
+  - @investments.each do |investment|
+    %tr
+      %td= investment.user_id
+      %td= investment.prospect_quantity
+      %td= investment.prospected_at
+      %td= investment.prospected_price
+      %td= investment.commited_quantity
+      %td= investment.commited_at
+      %td= investment.commited_price
+      %td= link_to 'Show', investment
+      %td= link_to 'Edit', edit_investment_path(investment)
+      %td= link_to 'Destroy', investment, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Investment', new_investment_path

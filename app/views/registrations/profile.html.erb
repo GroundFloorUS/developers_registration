@@ -1,0 +1,81 @@
+<div class="container">
+	<%= render :partial => "comfy/navbar", locals: { title: "create your profile", step: @registration.step, path: @path } %>
+
+
+  <div class="row">
+    <div class="span8">
+      <div class="box white">
+				<% unless @profile.id %>
+        	<p class="message">Tell us a bit more about yourself so we can figure out how to work with you.</p>
+				<% end %>
+	  		<%= form_for(@profile, url: projects_path, :method => :post) do |f| %>
+          <br>
+          <fieldset>
+            <!-- <legend>Join Groundfloor</legend> -->
+            <div class="">
+              <label for="input-phone">Phone Number</label>
+							<%= f.text_field :phone_number, placeholder: "19195551212", class: "span3" %>
+            </div>
+            <div class="question">
+              <label>Total debt plus equity typically invested in your projects:</label>
+							<%= f.hidden_field :total_debt_plus_equity %>
+              <div data-toggle="buttons-radio" class="btn-group" id="input-total-debt">
+								<% DeveloperProfile::DEBT_EQUITY.each do |option| %>
+                	<button type="button" value="<%= option %>" class="btn <%= @profile.total_debt_plus_equity == option ? "active" : "" %>"><%= option %></button>
+								<% end %>
+              </div>
+            </div>
+            <div class="question">
+              <label>Your experience in real estate development (in years):</label>
+							<%= f.hidden_field :experience %>
+              <div data-toggle="buttons-radio" class="btn-group" id="input-experience">
+								<% DeveloperProfile::EXPERIENCE.each do |option| %>
+                	<button type="button" value="<%= option %>" class="btn <%= @profile.experience == option ? "active" : "" %>"><%= option %></button>
+								<% end %>
+              </div>
+            </div>
+            <div class="question">
+              <label>What type of developer are you?</label>
+
+							<%= f.hidden_field :employment %>
+              <div data-toggle="buttons-radio" class="btn-group" id="input-employment">
+								<% DeveloperProfile::EMPLOYMENT.each do |option| %>
+                	<button type="button" value="<%= option %>" class="btn <%= @profile.employment == option ? "active" : "" %>"><%= option %></button>
+								<% end %>
+              </div>
+            </div>
+            <div class="question">
+              <label>How many projects do you do in a typical year?</label>
+							<%= f.hidden_field :yearly_projects %>
+              <div data-toggle="buttons-radio" class="btn-group" id="input-yearly-projects">
+								<% DeveloperProfile::PROJECTS_PER_YEAR.each do |option| %>
+                	<button type="button" value="<%= option %>" class="btn <%= @profile.yearly_projects == option ? "active" : "" %>"><%= option %></button>
+								<% end %>
+              </div>
+            </div>
+            <div class="question">
+              <label for="input-why-interested">Why are you interested in participating in our beta program?</label>
+							<%= f.text_area :why, rows: 3, class: "input-block-level" %>
+            </div>
+            <div class="question">
+              <label>How did you hear about us?</label>
+							<%= f.select :how_did_you_hear, DeveloperProfile::WHERE_DID_YOU_HEAR, {}, { }%>
+            </div>
+            <div class="input-friend" id="friend">
+              <label for="input-friend">Which friend or associate told you about us?</label>
+              <input type="text" name="input-friend" id="input-friend" class="span5" />
+            </div>
+
+				    <button type="submit" onclick="return validate_developer_profile();" class="btn btn-primary btn-large"><%= @profile.id ? "Update your profile" : "Create your profile"%>&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></button>
+
+          </fieldset>
+		  	<% end %>
+      </div>
+    </div>
+
+		<%= cms_snippet_content("developers--why-join") %>
+
+	</div>
+</div>
+
+<%= cms_snippet_content("footer") %>

@@ -1,0 +1,20 @@
+<div class="container">
+	<%= render :partial => "comfy/navbar", locals: { title: "create your profile", step: @registration.step, path: @path } %>
+
+
+  <div class="row">
+    <div class="span8">
+      <div class="box white">
+				<% unless @user.id %>
+        	<p class="message">Before you can create your profile you must confirm the following information.</p>
+				<% end %>
+				<%= render partial: "account", locals: { user: @user } %>
+      </div>
+    </div>
+		<%= cms_snippet_content("developers--confirm-account") %>
+
+	</div>
+	
+</div>
+
+<%= cms_snippet_content("footer") %>

@@ -1,0 +1,25 @@
+<% if local_assigns.has_key? :title %>
+	<div class="row">
+	  <div class="span8">
+	    <h1 class="alt color2"><%= title %></h1><br>
+	  </div>
+	</div>
+<% end %>
+<div class="row hidden-phone">
+  <div class="span12">
+    <div class="wizard">
+      <a href="<%= account_path %>" class="<%= path == account_path ? "current" : (step > 1 ? "completed" : "") %>">
+				<span class="badge"><%= step > 1 ? raw("<i class=\"icon-ok\"></i>") : "1" %></span> Create account
+			</a>
+      <a href="<%= profile_path %>" class="<%= path == profile_path ? "current" : (step > 2 ? "completed" : "") %>">
+				<span class="badge"><%= step > 2 ? raw("<i class=\"icon-ok\"></i>") : "2" %></span> Create your profile
+			</a>
+      <a href="<%= projects_path %>" class="<%= path == projects_path ? "current" : (step > 3 ? "completed" : "") %>">
+				<span class="badge badge-inverse"><%= step > 3 ? raw("<i class=\"icon-ok\"></i>") : "3" %></span> Add your projects
+			</a>
+      <a href="<%= thanks_path %>" class="<%= path == thanks_path ? "current" : (step > 4 ? "completed" : "") %>">
+				<span class="badge"><%= step > 4 ? raw("<i class=\"icon-ok\"></i>") : "4" %></span> Review next steps
+			</a>
+    </div>
+  </div>
+</div>

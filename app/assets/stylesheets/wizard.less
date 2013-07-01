@@ -1,0 +1,68 @@
+.wizard {
+  margin:-10px 0 30px 0;
+}
+.wizard a.completed {
+  color:lighten(@color1, 25%);
+  background:lighten(@color1, 5%);
+  &:after {
+    border-left: 20px solid lighten(@color1, 5%);
+  }
+  .badge {
+    color:lighten(@color1, 25%);
+  }
+}
+.wizard a {
+    padding: 12px 12px 10px 12px;
+    margin-right: 5px;
+    background:lighten(@color1, 10%);
+    position: relative;
+    display: inline-block;
+    color:#fff;
+}
+.wizard a:before {
+    width: 0px;
+    height: 0px;
+    border-top: 20px inset transparent;
+    border-bottom: 20px inset transparent;
+    border-left: 20px solid @color1;
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+}
+.wizard a:after {
+    width: 0px;
+    height: 0px;
+    border-top: 20px inset transparent;
+    border-bottom: 20px inset transparent;
+    border-left: 20px solid lighten(@color1, 10%);
+    position: absolute;
+    content: "";
+    top: 0;
+    right: -20px;
+    z-index: 2;
+}
+.wizard a:first-child:before { border: none }
+.wizard a:last-child:after { border: none }
+.wizard a:first-child {
+    -moz-border-radius: 4px 0 0 4px;
+    -webkit-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+}
+.wizard a:last-child {
+    -moz-border-radius: 0 4px 4px 0;
+    -webkit-border-radius: 0 4px 4px 0;
+    border-radius: 0 4px 4px 0;
+}
+.wizard .badge {
+  background:@color1;
+    margin: 0 5px 0 18px;
+    position: relative;
+    top: -1px;
+}
+.wizard a:first-child .badge { margin-left: 0 }
+.wizard .current {
+    background: @color2;;
+    color: #fff;
+}
+.wizard .current:after { border-left-color: @color2; }

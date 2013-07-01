@@ -1,0 +1,49 @@
+<%= render :partial => "comfy/navbar" %>
+
+<div class="container sign_in_form">
+  <div class="row">
+    <div class="sign_in_form span4 offset1">
+      <%= display_flash_messages(flash) %>
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+				<div class="modal-section">
+					<div class="field-group">
+						<label class="field-label">Email Address</label>
+						<div class="fields">
+			  			<%= f.email_field :email, :autofocus => true, class: "required" %>
+						</div>
+					</div>
+					<div class="field-group">
+						<label class="field-label">Password</label>
+						<div class="fields">
+		  				<%= f.password_field :password %>
+						</div>
+					</div>
+				</div>
+				<div>
+				  </br>
+					<%= f.submit "Log in", class: "btn-green" %> 
+				</div>
+				<div class="small muted mb4">
+				  </br><%= link_to "Forgot your password?", new_user_password_path %></br>
+				  Not a member yet? <%= link_to "Join Groundfloor now", account_path, class: "muted underlined" %> 
+				</div>
+				
+			<% end %>
+		</div>
+		<div id="facebook-step" class="span4 offset1 omniauth_links">			
+		  <ul>
+		    <li>
+			    <a href="/auth/twitter" class="btn btn-primary btn-large"><span class="icon icon-prepend icon-twitter"></span>Connect With Twitter</a>
+			  </li>
+		    <li>
+			      <a href="/auth/linkedin" class="btn btn-primary btn-large"><span class="icon icon-prepend icon-linkedin"></span>Connect With LinkedIn</a>
+	      </li>
+		    <li>
+			      <a href="/auth/facebook" class="btn btn-primary btn-large"><span class="icon icon-prepend icon-facebook"></span>Connect With Facebook</a>
+			      <p class="small muted">We will <em>never</em> post anything without your permission.</p>
+	      </li>
+	    </ul>
+    </div>		  
+  </div>
+</div>
+

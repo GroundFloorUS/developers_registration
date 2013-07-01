@@ -1,0 +1,42 @@
+.home {
+  min-height:720px;
+}
+.login {
+  position:fixed;
+  top:15px;
+  right:15px;
+}
+.teaser {
+  h1 {
+    margin:0 0 15px 0;
+  }
+}
+.logo-light {
+  margin:20px 0 40px 0;
+}
+.bg-city {
+  min-height:720px;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  width:100%;
+  // height:100%;
+  z-index:-1;
+  background:url(/assets/developers/bg-city.gif) no-repeat bottom center;
+  border-bottom:solid 20px @color5;
+}
+.faq {
+  color:@color1;
+  text-decoration:underline;
+  font-size:0.85em;
+}
+
+@media(max-width:767px) {
+  .teaser {
+    h1 {
+      font-size:2em;
+    }
+  }
+}

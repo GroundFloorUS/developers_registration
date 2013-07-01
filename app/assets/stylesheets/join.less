@@ -1,0 +1,97 @@
+.join {
+  padding:10px 20px 20px 20px;
+  .border-radius(@baseBorderRadius);
+  &.why {
+    background:url(/assets/developers/bg-signup.png) bottom center no-repeat @color2;
+    color:#fff;
+    min-height:400px;
+    legend {
+      color:@color1;
+      border-bottom-color:darken(@color2, 10%);
+    }
+    li {
+      margin-top:5px;
+    }
+  }
+  &.no-bg {
+    background-image:none;
+  }
+  &.home {
+    min-height:50px;
+    legend {
+      color:#fff;
+    }
+  }
+}
+.brand-wrapper {
+  border-top:solid 1px lighten(@color1, 5%);
+  margin-top:20px;
+  padding-top:20px;
+  margin-bottom:25px;
+  &.bottom {
+    border-top:0;
+  }
+}
+.input-friend {
+  display:none;
+}
+
+.project {
+  display:block;
+  margin-bottom:15px;
+  padding:15px;
+  text-align:center;
+  color:#fff;
+  border:solid 1px darken(@color2, 15%);
+  background:darken(@color2, 5%);
+  .border-radius(@baseBorderRadius);
+  .transition(all 0.3s ease);
+  span {
+    display:block;
+    font-size:0.85em;
+    color:@color1;
+  }
+  &.empty {
+    background:@color2;
+    border:dashed 2px darken(@color2, 10%);
+    color:@color1;
+    text-decoration:underline;
+    &:hover {
+      background:@color2;
+      color:#fff;
+    }
+  }
+  &:hover {
+    background:#fff;
+    color:@color1;
+    text-decoration:none;
+    border-color:#fff;
+  }
+}
+.or {
+  margin-top:15px;
+  padding-top:10px;
+  border-top:solid 1px darken(@color2, 10%);
+  text-align:center;
+  font-size:14px;
+  p {
+    color:#fff;
+    margin:0 0 5px;
+    font-size:14px;
+  }
+  .btn {
+    font-size:14px;
+  }
+}
+.btn-group {
+  .btn {
+    margin-bottom:5px;
+  }
+}
+
+.share {
+  margin-bottom:20px;
+  .heading {
+    margin-bottom:10px;
+  }
+}

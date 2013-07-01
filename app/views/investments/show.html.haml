@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @investment.user_id
+%p
+  %b Prospect quantity:
+  = @investment.prospect_quantity
+%p
+  %b Prospected at:
+  = @investment.prospected_at
+%p
+  %b Prospected price:
+  = @investment.prospected_price
+%p
+  %b Commited quantity:
+  = @investment.commited_quantity
+%p
+  %b Commited at:
+  = @investment.commited_at
+%p
+  %b Commited price:
+  = @investment.commited_price
+
+= link_to 'Edit', edit_investment_path(@investment)
+\|
+= link_to 'Back', investments_path

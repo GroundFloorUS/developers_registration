@@ -1,0 +1,17 @@
+common: &common
+  adapter: postgresql
+  username: postgres
+  password: schmitty # from psql setup, see Postgresql
+  
+development:
+  <<: *common
+  database: groundfloor_development
+  port: 5432
+  host: localhost
+
+test:
+  <<: *common
+  database: groundfloor_test
+  port: 5432
+  host: localhost
+

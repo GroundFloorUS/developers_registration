@@ -1,0 +1,25 @@
+<div class="navbar sub-nav navbar-inverse navbar-fixed-top" id="sub-nav">
+  <div class="navbar-inner">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
+          <a class="brand" href="/evaluate.html">Evaluate&nbsp;&nbsp;<i class="icon-chevron-right"></i></a>
+          <a class="btn btn-navbar" data-toggle="collapse" data-target="#sub-nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <div class="nav-collapse collapse" id="sub-nav-collapse">
+            <ul class="nav">
+              <li class="<%= params[:cms_path] == "evaluate" ? "active" : ""%>"><a href="/evaluate.html">Overview</a></li>
+              <li class="<%= params[:cms_path] == "evaluate/financials" ? "active" : ""%>"><a href="/evaluate/financials.html">Financials</a></li>
+              <li class="<%= params[:cms_path] == "evaluate/project-plan" ? "active" : ""%>"><a href="/evaluate/project-plan.html">Project Plan</a></li>
+              <li class="<%= params[:cms_path] == "evaluate/developers" ? "active" : ""%>"><a href="/evaluate/developers.html">Developers</a></li>
+              <li class="<%= params[:cms_path] == "evaluate/ask-a-question" ? "active" : ""%>"><a href="/evaluate/ask-a-question.html">Ask a Question</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

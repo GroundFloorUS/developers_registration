@@ -1,0 +1,29 @@
+<div class="container">
+	<%= render :partial => "comfy/navbar", locals: { title: "so, what\'s next?", step: @registration.step, path: @path } %>
+
+
+  <div class="row">
+
+    <div class="span8">
+			<%= cms_snippet_content("developers--thanks") %>
+    </div>
+    <div class="span4">
+      <div class="join why no-bg">
+        <legend>Your projects</legend>
+				<% @projects.each do |project| %>
+					<%= link_to project.name, projects_path(id: project.id), class: "project" %>
+				<% end %>
+
+				<% if @projects.length > 0 %>
+					<%= link_to "Add a new project" , projects_path, class: "project empty" %>
+				<% else %>
+      		<a href="#" onclick="$('#project_name').focus(); return false;" class="project empty">Add your first project</a>
+				<% end %>
+      </div>
+    </div>
+
+
+	</div>
+</div>
+
+<%= cms_snippet_content("footer") %>
