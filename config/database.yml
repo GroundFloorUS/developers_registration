@@ -15,3 +15,6 @@ test:
   port: 5432
   host: localhost
 
+production:
+  <<: *common
+
