@@ -456,6 +456,7 @@ DEPENDENCIES
   haml
   heroku
   jquery-rails
+  jquery-ui-rails
   kaminari
   less-rails
   letter_opener
