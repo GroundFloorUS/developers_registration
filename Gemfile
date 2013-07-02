@@ -30,6 +30,8 @@ gem "gravatar-ultimate"
 gem 'kaminari'
 gem 'balanced'
 gem "font-awesome-rails"
+gem "aws-ses"
+
 
 #Omniauth
 gem 'omniauth'

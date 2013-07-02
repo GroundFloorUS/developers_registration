@@ -68,4 +68,7 @@ Groundfloor::Application.configure do
   config.action_mailer.default_url_options = { :host => 'groundfloor.us' }
   config.autoload_paths += Dir["#{config.root}/app/models/**/"]
   config.autoload_paths += Dir["#{config.root}/lib/**/"]
+  
+  config.action_mailer.delivery_method = :smtp
+  
 end
