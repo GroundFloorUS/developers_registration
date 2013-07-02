@@ -66,9 +66,10 @@ Groundfloor::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   
   config.action_mailer.default_url_options = { :host => 'groundfloor.us' }
+  config.action_mailer.delivery_method = :ses
+
   config.autoload_paths += Dir["#{config.root}/app/models/**/"]
   config.autoload_paths += Dir["#{config.root}/lib/**/"]
   
-  config.action_mailer.delivery_method = :smtp
   
 end
