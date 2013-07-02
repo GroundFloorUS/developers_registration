@@ -1,5 +1,219 @@
-<p>Welcome <%= @email %>!</p>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GROUNDFLOOR</title>
+  
+  <!-- Targeting Windows Mobile -->
+  <!--[if IEMobile 7]>
+  <style type="text/css">
+  </style>
+  <![endif]-->
 
-<p>You can confirm your account email through the link below:</p>
+  <!-- ***********************************************
+  ****************************************************
+  END MOBILE TARGETING
+  ****************************************************
+  ************************************************ -->
+  <!--[if gte mso 9]>
+    <style>
+    /* Target Outlook 2007 and 2010 */
+    </style>
+  <![endif]-->
+<style type="text/css">
+		#outlook a{
+			padding:0;
+		}
+		body{
+			background:#2e3133;
+			width:100% !important;
+			-webkit-text-size-adjust:100%;
+			-ms-text-size-adjust:100%;
+			margin:0;
+			padding:0;
+		}
+		.ExternalClass{
+			width:100%;
+		}
+		.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div{
+			line-height:100%;
+		}
+		#backgroundTable{
+			margin:0;
+			padding:0;
+			width:100% !important;
+			line-height:100% !important;
+		}
+		img{
+			outline:none;
+			text-decoration:none;
+			-ms-interpolation-mode:bicubic;
+		}
+		a img{
+			border:none;
+		}
+		.image_fix{
+			display:block;
+		}
+		p{
+			margin:1em 0;
+		}
+		h1,h2,h3,h4,h5,h6{
+			color:#2e3133 !important;
+		}
+		h1 a,h2 a,h3 a,h4 a,h5 a,h6 a{
+			color:#26a97c !important;
+		}
+		h1 a:active,h2 a:active,h3 a:active,h4 a:active,h5 a:active,h6 a:active{
+			color:#ef3c3c !important;
+		}
+		h1 a:visited,h2 a:visited,h3 a:visited,h4 a:visited,h5 a:visited,h6 a:visited{
+			color:#ef3c3c !important;
+		}
+		table td{
+			border-collapse:collapse;
+		}
+		table{
+			border-collapse:collapse;
+			mso-table-lspace:0pt;
+			mso-table-rspace:0pt;
+		}
+		a{
+			color:#26a97c;
+		}
+	@media only screen and (max-device-width: 480px){
+		a[href^=tel],a[href^=sms]{
+			text-decoration:none;
+			color:blue;
+			cursor:default;
+		}
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>
+}	@media only screen and (max-device-width: 480px){
+		.mobile_link a[href^=tel],.mobile_link a[href^=sms]{
+			text-decoration:default;
+			color:orange !important;
+			pointer-events:auto;
+			cursor:default;
+		}
+
+}	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
+		a[href^=tel],a[href^=sms]{
+			text-decoration:none;
+			color:#26a97c;
+			cursor:default;
+		}
+
+}	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px){
+		.mobile_link a[href^=tel],.mobile_link a[href^=sms]{
+			text-decoration:default;
+			color:#26a97c !important;
+			pointer-events:auto;
+			cursor:default;
+		}
+
+}</style></head>
+<body bgcolor="#2e3133" style="font-family: Helvetica, Arial, sans-serif;color: #2e3133;font-size: 16px;line-height: 24px;width: 100%;margin: 0;padding: 0;background-color: #2e3133;background: #2e3133;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;">
+<table cellpadding="0" cellspacing="0" border="0" id="backgroundTable" width="100%" bgcolor="#2e3133" style="width: 100% !important;background-color: #2e3133;table-layout: fixed;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;margin: 0;padding: 0;line-height: 100% !important;">
+  <tr>
+    <td valign="top" align="center" style="border-collapse: collapse;">
+      <table cellpadding="0" cellspacing="0" border="0" align="center" width="600" bgcolor="#2e3133" style="border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+        <tr>
+          <td width="600" valign="top" align="center" style="border-collapse: collapse;"><a href="http://groundfloor.us" style="color: #26a97c;"><img src="http://gf.cedarly.com/assets/images/logo-email.gif" width="220" height="103" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;border: none;"></a></td>
+        </tr>
+        <tr>
+          <td width="600" valign="top" align="center" style="border-collapse: collapse;">
+            <table cellspacing="0" cellpadding="0" border="0" align="center" width="600" bgcolor="#ffffff" frame="border" style="font-family: Helvetica, Arial, sans-serif;font-size: 16px;line-height: 24px;border-width: 0px;border: none;background-color: #ffffff;-moz-border-radius: 5px;-webkit-border-radius: 5px;border-radius: 5px;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+              <tr>
+                <td align="center" style="font-size: 12px;line-height: 30px;height: 30px;max-height: 30px;border-collapse: collapse;" height="30">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="center" style="border-collapse: collapse;">
+                  <table cellpadding="0" cellspacing="0" width="540" align="center" style="color: #2e3133;font-family: Helvetica, Arial, sans-serif;font-size: 16px;line-height: 24px;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                    <tr>
+                      <td width="540" valign="top" style="color: #2e3133;font-family: Helvetica, Arial, sans-serif;font-size: 16px;line-height: 24px;background-color: #ffffff;border-collapse: collapse;" bgcolor="#ffffff" class="headerContent">
+                        <h1 style="color:#2e3133; font-family:Helvetica, Arial, sans-serif; font-size:32px; line-height:34px; font-weight:bold; margin:0; letter-spacing:-1px;">Pie's in the oven</h1>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="font-size: 12px;line-height: 20px;height: 20px;max-height: 20px;border-collapse: collapse;" height="20">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td width="540" valign="top" style="color: #2e3133;font-family: Helvetica, Arial, sans-serif;font-size: 16px;line-height: 24px;background-color: #ffffff;border-collapse: collapse;" bgcolor="#ffffff" class="upperBodyContent">
+                        As a startup, we’re especially grateful for your interest in us. Thank you for your support! We know from experience that achieving a big vision takes more than hard work. It also requires a community of like minds who spread the word and contribute what they think. 
+                        <br><br>
+                        We’re cooking up something new and better for the world of saving and investing. In the meantime, you can follow us on Twitter <a href="http:/twitter.com/groundfloor_us" style="color: #26a97c;">@groundfloor_us</a>. That’s the best way to keep tabs on us for now. When the time comes, we’ll email you with the big news of our launch.
+                        <br><br>
+                        Tweeting not your thing? Email us anytime at <a href="mailto:founders@groundfloor.us" style="color: #26a97c;">founders@groundfloor.us</a>. We’d love to hear from you.  
+                        <br><br>
+                        <b>Brian &amp; Nick</b><br>
+                        Co-Founders<br>
+                        <br>                      
+												p.s. when you get a second please <%= link_to 'confirm your account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
+                        <br><br>
+												p.p.s. What’s with the pie?  Email us to say what the metaphor means to you, and we might just send you one (really!).
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" style="font-size: 12px;line-height: 30px;height: 30px;max-height: 30px;border-collapse: collapse;" height="30">&nbsp;</td>
+              </tr>
+              <tr>
+                <td align="center" style="border-top-width: 1px;border-top-style: solid;border-top-color: #cFcEcC;border-collapse: collapse;">
+                  <table cellpadding="0" cellspacing="0" width="600" align="center" bgcolor="#EFEEEC" style="color: #6E6D6D;font-family: Helvetica, Arial, sans-serif;font-size: 14px;line-height: 22px;-moz-border-radius-bottomleft: 5px;-moz-border-radius-bottomright: 5px;-webkit-border-bottom-left-radius: 5px;-webkit-border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;">
+                    <tr>
+                      <td align="center" style="font-size: 12px;line-height: 15px;height: 15px;max-height: 15px;border-collapse: collapse;" height="15">&nbsp;</td>
+                    </tr>
+                    <tr>
+                      <td valign="top" style="color: #6E6D6D;background-color: #EFEEEC;font-family: Helvetica, Arial, sans-serif;font-size: 12px;line-height: 22px;border-collapse: collapse;" class="footerContent" align="center" bgcolor="#EFEEEC"><a href="http://groundfloor.us" style="color:#6E6D6D; text-decoration:underline; font-family:Helvetica, Arial, sans-serif; font-size:12px;">www.groundfloor.us</a>&nbsp;&nbsp;<span style="color:#cFcEcC;">|</span>&nbsp;&nbsp;<a href="mailto:contact@groundfloor.us" style="color:#6E6D6D; text-decoration:underline; font-family:Helvetica, Arial, sans-serif; font-size:12px;" target="_self">contact@groundfloor.us</a> </td>
+                    </tr>
+                    <tr>
+                      <td align="center" style="font-size: 12px;line-height: 15px;height: 15px;max-height: 15px;border-collapse: collapse;" height="15">&nbsp;</td>
+                    </tr>
+                  </table>
+                </td>
+            </tr></table>
+            <br><br><br>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+            <center>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" id="canspamBarWrapper" style="background-color:#FFFFFF; border-top:1px solid #E5E5E5;">
+                    <tr>
+                        <td align="center" valign="top" style="padding-top:20px; padding-bottom:20px;">
+                            <table border="0" cellpadding="0" cellspacing="0" id="canspamBar">
+                                <tr>
+                                    <td align="center" valign="top" style="color:#606060; font-family:Helvetica, Arial, sans-serif; font-size:11px; line-height:150%; padding-right:20px; padding-bottom:5px; padding-left:20px; text-align:center;">
+                                        This email was sent to <a href="*|EMAIL|*" target="_blank" style="color:#404040 !important;">*|EMAIL|*</a>
+                                        <br />
+                                        <a href="*|ABOUT_LIST|*" target="_blank" style="color:#404040 !important;"><em>why did I get this?</em></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="*|UNSUB|*" style="color:#404040 !important;">unsubscribe from this list</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="*|UPDATE_PROFILE|*" style="color:#404040 !important;">update subscription preferences</a>
+                                        <br />
+                                        *|LIST:ADDRESSLINE|*
+                                        <br />
+                                        <br />
+                                        
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <style type="text/css">
+                    @media only screen and (max-width: 480px){
+                        table[id="canspamBar"] td{font-size:14px !important;}
+                        table[id="canspamBar"] td a{display:block !important; margin-top:10px !important;}
+                    }
+                </style>
+            </center></body>
+</html>
