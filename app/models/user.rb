@@ -53,5 +53,8 @@ class User < ActiveRecord::Base
   def has_role?(role=nil)
     self.roles.where(name: role).first
   end
-  
+
+  def admin_title
+    "#{name} (#{email})"
+  end
 end
