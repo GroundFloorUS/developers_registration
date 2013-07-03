@@ -1,9 +1,9 @@
 Groundfloor::Application.routes.draw do
   
-  resources :investments
+  # resources :investments
   match '/invest', to: "investments#new", :as => :invest
-
-
+  
+  
   # Developer Registration urls
   match '/profile', to: "registrations#create_account", :as => :create_account, :via => [:post]
   match '/profile', to: "registrations#delete_project", :as => :delete_project, :via => [:delete]
@@ -12,17 +12,18 @@ Groundfloor::Application.routes.draw do
   match '/projects', to: "registrations#projects", :as => :projects
   match '/thanks', to: "registrations#thanks", :as => :thanks
   
+  # Devises Path
+  # devise_scope :user do
+  #   match '/auth/:provider/callback', to: 'groundfloor/sessions#auth_callback'
+  #   match '/logout', to: 'groundfloor/sessions#destroy'  
+  # end
+  devise_for :users, :controllers => { :sessions => "groundfloor/sessions" }
+  
+  
   root :to => "cms_content#render_html"
   
   # CMS Admin path
   ComfortableMexicanSofa::Routing.admin(:path => '/cms-admin')
-
-  # Devises Path
-  devise_scope :user do
-    match '/auth/:provider/callback', to: 'groundfloor/sessions#auth_callback'
-    match '/logout', to: 'groundfloor/sessions#destroy'  
-  end
-  devise_for :users, :controllers => { :sessions => "groundfloor/sessions" }
   
   # Active admin routes
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -30,4 +31,5 @@ Groundfloor::Application.routes.draw do
   
   # Make sure this routeset is defined last
   ComfortableMexicanSofa::Routing.content(:path => '/', :sitemap => false)
+  
 end

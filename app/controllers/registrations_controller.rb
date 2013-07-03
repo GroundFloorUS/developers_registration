@@ -1,5 +1,6 @@
 class RegistrationsController < ApplicationController
-  before_filter :set_registration, :authenticate_user!, :except => [:create_account]
+  before_filter :set_registration
+  before_filter :authenticate_user!, :except => [:create_account]
   
   def set_registration
     @path = request.fullpath.split("?").first

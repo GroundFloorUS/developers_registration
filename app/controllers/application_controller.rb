@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
-  end
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   redirect_to root_url, :alert => exception.message
+  # end
 
   def authenticate_basic_auth
     auth = authenticate_or_request_with_http_basic do |username, password|
