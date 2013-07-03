@@ -7,13 +7,7 @@ class Groundfloor::SessionsController < Devise::SessionsController
     
     logger.debug("Current User: #{current_user.id} => Resource: #{resource.id}")
     
-    unless current_user.registration_completed
-      identity = Identity.find_by_user_id_and_provider(current_user.id, "groundfloor")
-      reg = Registration.new(state: :started, user_id: current_user.id)
-      reg.identity_id = identity.id if identity
-      session[:registration] = reg
-      return redirect_to current_user.registation_url
-    end if current_user
+    session[:registration] = Registration.new(user_id: current_user.id, name: current_user.name, first_name: current_user.first_name, last_name: current_user.last_name, has_projects: (current_user.projects.length > 0 ? true : false), completed: current_user.registration_completed)
     respond_with resource, :location => after_sign_in_path_for(resource)
   end
   

@@ -3,8 +3,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :timeoutable
+         :recoverable, :rememberable, :trackable, :validatable, :lockable, :timeoutable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :name, :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, 
@@ -17,12 +16,18 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   
   before_create :split_name, :create_referral_code
+  after_create :send_welcome_message
   
   def split_name
     if !self.name.nil? && self.first_name.nil? && self.last_name.nil?
       self.first_name = self.name.split(" ").first
       self.last_name = self.name.split(" ").last
     end
+  end
+  
+  def send_welcome_message
+    #UserMailer.delay.welcome_message(self)
+    UserMailer.welcome_message(self)
   end
   
   def title

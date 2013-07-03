@@ -15,4 +15,17 @@ class ApplicationController < ActionController::Base
     end if Rails.env.downcase == "production"
   end
   
+  def after_sign_in_path_for(resource)
+    if resource.is_a? AdminUser
+      admin_dashboard_path(resource) 
+    else
+      if (current_user)
+        current_user.registation_url
+      else
+        root_path
+      end
+    end
+  end
+  
+  
 end

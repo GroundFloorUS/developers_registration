@@ -276,7 +276,6 @@ GEM
     multi_json (1.7.4)
     multipart-post (1.2.0)
     netrc (0.7.7)
-    newrelic_rpm (3.6.3.104)
     nokogiri (1.5.9)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -468,7 +467,6 @@ DEPENDENCIES
   less-rails
   letter_opener
   metrical
-  newrelic_rpm
   omniauth
   omniauth-facebook
   omniauth-linkedin

@@ -7,13 +7,15 @@
       <div class="box white">
 				<% unless @profile.id %>
         	<p class="message">Tell us a bit more about yourself so we can figure out how to work with you.</p>
+				<% else %>
+					<%= display_flash_messages(flash) %>
 				<% end %>
 	  		<%= form_for(@profile, url: projects_path, :method => :post) do |f| %>
           <br>
           <fieldset>
             <!-- <legend>Join Groundfloor</legend> -->
             <div class="">
-              <label for="input-phone">Phone Number</label>
+              <label for="input-phone">What Phone Number Can We Reach You At?</label>
 							<%= f.text_field :phone_number, placeholder: "19195551212", class: "span3" %>
             </div>
             <div class="question">

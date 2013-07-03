@@ -10,14 +10,9 @@ class RegistrationsController < ApplicationController
   
   def account
     # Check to see if we came from a social profile or if this is a new account
-    if @registration && @registration.identity_id
-      @identity = Identity.find(@registration.identity_id) 
-    else 
-      @registration = Registration.new
-    end
-    
+    @user = current_user
+    @registration = Registration.new(user_id: current_user.id, name: current_user.name, first_name: current_user.first_name, last_name: current_user.last_name, has_projects: (current_user.projects.length > 0 ? true : false), completed: current_user.registration_completed) unless @registration 
     session[:registration] = @registration
-    @user = @registration.user_id ? User.find(@registration.user_id) : User.new(name: @registration.name, first_name: @registration.name.split(" ").first)
   end
   
   def create_account
@@ -101,6 +96,7 @@ class RegistrationsController < ApplicationController
         @project.save
       end
       @registration.has_projects = true
+      flash[:info] = "<b>Great News!</b>  Your project has been created." 
     end  
       
     session[:registration] = @registration

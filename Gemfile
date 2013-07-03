@@ -9,7 +9,7 @@ gem "heroku"
 gem 'pg'
 gem 'devise'
 gem "paperclip"
-gem 'newrelic_rpm'
+#gem 'newrelic_rpm'
 gem "activeadmin"
 gem 'active_admin_editor'
 gem "less-rails"

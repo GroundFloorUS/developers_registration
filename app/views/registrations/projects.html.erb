@@ -5,7 +5,11 @@
   <div class="row">
     <div class="span8">
       <div class="box white">
-        <p class="message"><b>Thanks for joining!</b> Now tell us about your projects you would like to feature on Groundfloor. You can submit up to five projects.</p>
+				<% unless @projects.length > 0 %>
+        	<p class="message"><b>Thanks for joining!</b> Now tell us about your projects you would like to feature on Groundfloor. You can submit up to five projects.</p>
+				<% else %>
+					<%= display_flash_messages(flash) %>
+				<% end %>
 	  		<%= form_for(@project, url: projects_path, :method => :post) do |f| %>
 					<%= f.hidden_field :id %>
           <br>
