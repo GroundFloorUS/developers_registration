@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "Groundfloor <no-reply@groundfloor.us>"
+  default from: "no-reply@groundfloor.us"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

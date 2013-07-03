@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   
   def send_welcome_message
     #UserMailer.delay.welcome_message(self)
-    UserMailer.welcome_message(self)
+    UserMailer.welcome_message(self).deliver
   end
   
   def title

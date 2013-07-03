@@ -68,10 +68,6 @@ gem "jquery-ui-rails"
 
 # To use debugger
 # gem 'debugger'
-group :development do
-	gem "letter_opener"
-end
-
 group :development, :test do
 	gem "pry"
 	gem "awesome_print"
