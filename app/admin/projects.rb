@@ -107,9 +107,9 @@ ActiveAdmin.register Project do
       end
     end
     
-    @other_projects = project.other_projects_for_this_developer
+    @other_projects = Project.where{ user_id == "#{project.user_id}" }.where{ id != "#{project.id}" }
     if @other_projects.length > 0
-      panel "Other Projects" do
+      panel "Other Projects By This Developer" do
         table_for @other_projects do |t|
           t.column("Name") { |project| project.name ? link_to(project.name, admin_project_path(project)) : "No Name Entered" }
           t.column("Ask Amount") { |project| project.amount_to_raise.present? ? number_to_currency(project.amount_to_raise) : "$0" }

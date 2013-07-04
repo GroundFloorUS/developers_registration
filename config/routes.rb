@@ -13,10 +13,10 @@ Groundfloor::Application.routes.draw do
   match '/thanks', to: "registrations#thanks", :as => :thanks
   
   # Devises Path
-  # devise_scope :user do
-  #   match '/auth/:provider/callback', to: 'groundfloor/sessions#auth_callback'
-  #   match '/logout', to: 'groundfloor/sessions#destroy'  
-  # end
+  devise_scope :user do
+    match '/auth/:provider/callback', to: 'groundfloor/sessions#auth_callback'
+    match '/logout', to: 'groundfloor/sessions#destroy'  
+  end
   devise_for :users, :controllers => { :sessions => "groundfloor/sessions" }
   
   

@@ -10,8 +10,4 @@ class Project < ActiveRecord::Base
   CLOSE_TIMELINE = ["<30 days", "30-60 days", "60-90 days", "90-120 days", ">120 days", "Flexible / Doesn\'t Matter"]
   
   
-  def other_projects_for_this_developer
-    Project.where{ user_id == "#{self.user_id}" }.where{ id != "#{self.id}" }
-  end
-
 end

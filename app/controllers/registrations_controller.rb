@@ -1,6 +1,6 @@
 class RegistrationsController < ApplicationController
   before_filter :set_registration
-  before_filter :authenticate_user!, :except => [:create_account]
+  before_filter :authenticate_user!, :except => [:account, :create_account, :profile]
   
   def set_registration
     @path = request.fullpath.split("?").first
@@ -9,10 +9,14 @@ class RegistrationsController < ApplicationController
   end
   
   def account
-    # Check to see if we came from a social profile or if this is a new account
-    @user = current_user
-    @registration = Registration.new(user_id: current_user.id, name: current_user.name, first_name: current_user.first_name, last_name: current_user.last_name, has_projects: (current_user.projects.length > 0 ? true : false), completed: current_user.registration_completed) unless @registration 
-    session[:registration] = @registration
+    if @registration
+      @user = current_user || User.new(name: @registration.name)
+      @registration = Registration.new(user_id: current_user.id, name: current_user.name, first_name: current_user.first_name, last_name: current_user.last_name, has_projects: (current_user.projects.length > 0 ? true : false), completed: current_user.registration_completed) unless @registration 
+      session[:registration] = @registration
+    else
+      # if there is no registration someone came directly to this page so redirect them to the root
+      redirect_to root_path
+    end
   end
   
   def create_account
@@ -23,50 +27,55 @@ class RegistrationsController < ApplicationController
   end
 
   def profile
-    if params[:user].present?
-      temp_password = SecureRandom.hex(10)
-      @user = (params[:user][:id].present? ? current_user : User.create(params[:user].merge(password_confirmation: params[:user][:password])) )
-      logger.debug("User: #{@user.inspect}")
-      User.transaction do 
-        @social_profile = SocialProfile.find(@registration.social_profile_id) if @registration.social_profile_id
+    if @registration
+      if params[:user].present?
+        temp_password = SecureRandom.hex(10)
+        @user = (params[:user][:id].present? ? current_user : User.create(params[:user].merge(password_confirmation: params[:user][:password])) )
+        logger.debug("User: #{@user.inspect}")
+        User.transaction do 
+          @social_profile = SocialProfile.find(@registration.social_profile_id) if @registration.social_profile_id
         
-        params[:user].each do |key, value|
-          @user.send("#{key}=".to_sym, value) if @user.attributes.has_key? key
-        end 
+          params[:user].each do |key, value|
+            @user.send("#{key}=".to_sym, value) if @user.attributes.has_key? key
+          end 
 
-        if @social_profile && @social_profile.profile_image
-          @user.avatar_url = @social_profile.profile_image
-        else
-          @user.avatar_url = Gravatar.new(@user.email).image_url 
-        end if @user.avatar_url.blank?
+          if @social_profile && @social_profile.profile_image
+            @user.avatar_url = @social_profile.profile_image
+          else
+            @user.avatar_url = Gravatar.new(@user.email).image_url 
+          end if @user.avatar_url.blank?
 
-        if @user.new_record?
-          flash.now[:info] = "<b>Your off to a great start.</b> Your account has been created"
-          @user.password = temp_password
-          @user.password_confirmation = temp_password
-        end
-        if @user.changed? && @user.save!
-          flash.now[:info] = (current_user.present? ? "<b>Your off to a great start.</b> Your account has been created" : "<b>Thanks</b>  Your account has been updated.")
-        end
+          if @user.new_record?
+            flash.now[:info] = "<b>Your off to a great start.</b> Your account has been created"
+            @user.password = temp_password
+            @user.password_confirmation = temp_password
+          end
+          if @user.changed? && @user.save!
+            flash.now[:info] = (current_user.present? ? "<b>Your off to a great start.</b> Your account has been created" : "<b>Thanks</b>  Your account has been updated.")
+          end
         
-        # sign in the new user unless he is already signed in
-        sign_in(@user) unless current_user
+          # sign in the new user unless he is already signed in
+          sign_in(@user) unless current_user
         
-        @social_profile.update_attribute(:user_id, @user.id) if @social_profile && @user.id 
-        @identity = ((@registration && @registration.identity_id) ? Identity.find(@registration.identity_id) : Identity.create(provider: "groundfloor"))
-        @identity.update_attribute(:user_id,  @user.id)
+          @social_profile.update_attribute(:user_id, @user.id) if @social_profile && @user.id 
+          @identity = ((@registration && @registration.identity_id) ? Identity.find(@registration.identity_id) : Identity.create(provider: "groundfloor"))
+          @identity.update_attribute(:user_id,  @user.id)
 
-        @registration.user_id = @user.id
+          @registration.user_id = @user.id
       
-        # verify that the registration has the idenity or set it if it is not ther
-        @registration.identity_id = @identity.id unless @registration.identity_id
+          # verify that the registration has the idenity or set it if it is not ther
+          @registration.identity_id = @identity.id unless @registration.identity_id
         
-        RolesUsers.create(user_id: @registration.user_id, role_id: Role.find_by_name(Role::DEVELOPER).id) 
+          RolesUsers.create(user_id: @registration.user_id, role_id: Role.find_by_name(Role::DEVELOPER).id) 
+        end
       end
+
+      @profile = @registration.developer_profile_id ? DeveloperProfile.find(@registration.developer_profile_id) : DeveloperProfile.new(user_id: @registration.user_id)
+      session[:registration] = @registration
+    else
+      # if there is no registration someone came directly to this page so redirect them to the root
+      redirect_to root_path
     end
-    
-    @profile = @registration.developer_profile_id ? DeveloperProfile.find(@registration.developer_profile_id) : DeveloperProfile.new(user_id: @registration.user_id)
-    session[:registration] = @registration
   end
   
   def projects
