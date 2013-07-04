@@ -66,10 +66,10 @@ ActiveAdmin.register User do
           t.column("Gender") { |profile| profile.gender.present? ? profile.gender : "N/A"}
           t.column("Location") { |profile| profile.location.present? ? profile.location : "N/A"}
           t.column("Industry") { |profile| profile.industry.present? ? profile.industry : "N/A"}
-          t.column("Description") { |profile| profile.description ? profile.description : "N/A"}
-          t.column("Followers") { |profile| profile.followers > 0 ? number_with_delimiter(profile.followers) : "0" }
-          t.column("Friends") { |profile| profile.friends > 0 ? number_with_delimiter(profile.friends) : "0" }
-          t.column("Messages") { |profile| profile.message_count > 0 ? number_with_delimiter(profile.message_count) : "0" }
+          t.column("Description") { |profile| profile.description.present? ? profile.description : "N/A"}
+          t.column("Followers") { |profile| profile.followers.present? ? number_with_delimiter(profile.followers) : "0" }
+          t.column("Friends") { |profile| profile.friends.present? ? number_with_delimiter(profile.friends) : "0" }
+          t.column("Messages") { |profile| profile.message_count.present? ? number_with_delimiter(profile.message_count) : "0" }
         end
       end
     end
