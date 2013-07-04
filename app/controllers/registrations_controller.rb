@@ -23,16 +23,10 @@ class RegistrationsController < ApplicationController
   end
 
   def profile
-    temp_password = SecureRandom.hex(10)
-    
-    if @registration && @registration.user_id
-      @user = User.find(@registration.user_id) 
-    else
-      # if the email exists redirect to the login page.  If the user doesn't exist then create them
-      @user = User.find_by_email(params[:user][:email]) || User.create(params[:user].merge(password_confirmation: params[:user][:password]))
-    end
-    
-    if params[:user]
+    if params[:user].present?
+      temp_password = SecureRandom.hex(10)
+      @user = (params[:user][:id].present? ? current_user : User.create(params[:user].merge(password_confirmation: params[:user][:password])) )
+      logger.debug("User: #{@user.inspect}")
       User.transaction do 
         @social_profile = SocialProfile.find(@registration.social_profile_id) if @registration.social_profile_id
         
@@ -40,17 +34,20 @@ class RegistrationsController < ApplicationController
           @user.send("#{key}=".to_sym, value) if @user.attributes.has_key? key
         end 
 
-        if @social_profile.profile_image
+        if @social_profile && @social_profile.profile_image
           @user.avatar_url = @social_profile.profile_image
         else
           @user.avatar_url = Gravatar.new(@user.email).image_url 
         end if @user.avatar_url.blank?
 
         if @user.new_record?
+          flash.now[:info] = "<b>Your off to a great start.</b> Your account has been created"
           @user.password = temp_password
           @user.password_confirmation = temp_password
         end
-        @user.save! if @user.changed?
+        if @user.changed? && @user.save!
+          flash.now[:info] = (current_user.present? ? "<b>Your off to a great start.</b> Your account has been created" : "<b>Thanks</b>  Your account has been updated.")
+        end
         
         # sign in the new user unless he is already signed in
         sign_in(@user) unless current_user
@@ -70,35 +67,36 @@ class RegistrationsController < ApplicationController
     
     @profile = @registration.developer_profile_id ? DeveloperProfile.find(@registration.developer_profile_id) : DeveloperProfile.new(user_id: @registration.user_id)
     session[:registration] = @registration
-    sign_in(@user) if @user
   end
   
   def projects
     logger.debug("Step: #{@registration.step}")
-    if params[:developer_profile]
+    if params[:developer_profile].present?
       @profile = @registration.developer_profile_id ? DeveloperProfile.find(@registration.developer_profile_id) : DeveloperProfile.new(user_id: @registration.user_id)
-      logger.debug("Developer Profile: #{@profile.inspect}")
       @profile.transaction do
         params[:developer_profile].each do |key, value|
           @profile.send("#{key}=".to_sym, value) if @profile.attributes.has_key? key
         end
-        @profile.save
+        if @profile.changed? && @profile.save
+          flash.now[:info] = (params[:developer_profile][:id].nil? ? "<b>Great News!</b>  Your profile has been created." : "<b>Thanks</b>  Your profile has been updated.")
+        end
         @registration.developer_profile_id = @profile.id unless @registration.developer_profile_id
       end
     end
 
-    if params[:project]
+    if params[:project].present?
       @project = Project.find_by_user_id_and_id(current_user.id, params[:project][:id]) || Project.new(user_id: current_user.id)
       @project.transaction do
         params[:project].each do |key, value|
           @project.send("#{key}=".to_sym, value) if @project.attributes.has_key? key
         end
-        @project.save
+        if @project.changed? && @project.save
+          flash.now[:info] = (params[:project][:id].nil? ? "<b>Great News!</b>  Your project has been created." : "<b>Thanks</b>  Your project has been updated.")
+        end
       end
       @registration.has_projects = true
-      flash[:info] = "<b>Great News!</b>  Your project has been created." 
     end  
-      
+    
     session[:registration] = @registration
     @project = Project.find_by_user_id_and_id(current_user.id, params[:id]) || Project.new(user_id: current_user.id) unless @project
     @projects = current_user.projects
@@ -106,7 +104,9 @@ class RegistrationsController < ApplicationController
   
   def delete_project
     project = Project.find_by_user_id_and_id(current_user.id, params[:id])
-    project.destroy if project
+    if project && project.destroy 
+      flash.now[:info] = "Your project has been removed."
+    end
     
     @project = Project.new(user_id: current_user.id)
     @projects = current_user.projects

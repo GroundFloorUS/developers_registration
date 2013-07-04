@@ -5,10 +5,10 @@ Groundfloor::Application.routes.draw do
   
   
   # Developer Registration urls
-  match '/profile', to: "registrations#create_account", :as => :create_account, :via => [:post]
+  match '/account', to: "registrations#account", :as => :account, :via => [:get]
+  match '/account', to: "registrations#create_account", :as => :create_account, :via => [:post]
   match '/profile', to: "registrations#delete_project", :as => :delete_project, :via => [:delete]
   match '/profile', to: "registrations#profile", :as => :profile, :via => [:get,:put,:post]
-  match '/account', to: "registrations#account", :as => :account
   match '/projects', to: "registrations#projects", :as => :projects
   match '/thanks', to: "registrations#thanks", :as => :thanks
   

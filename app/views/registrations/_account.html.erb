@@ -1,6 +1,7 @@
 <%= form_for(user, url: profile_path, :method => :post) do |f| %>
+	<%= f.hidden_field :id %>
 	<fieldset>
-    <div class="infield-label">
+    <div class="infield-label"> 
       <label for="input-name">Your Name</label>
 			<%= f.text_field :name, class: "required input-block-level" %>
     </div>
