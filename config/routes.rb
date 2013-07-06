@@ -20,7 +20,7 @@ Groundfloor::Application.routes.draw do
   devise_for :users, :controllers => { :sessions => "groundfloor/sessions" }
   
   
-  root :to => "cms_content#render_html"
+  root :to => "registrations#index"
   
   # CMS Admin path
   ComfortableMexicanSofa::Routing.admin(:path => '/cms-admin')

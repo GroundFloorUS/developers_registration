@@ -1,4 +1,4 @@
-<%= form_for(User.new, url: create_account_path, :method => :post) do |f| %>
+<%= form_for(User.new, url: create_account_path, :method => :post, :html => { id: "registration_form" } ) do |f| %>
 	<fieldset>
     <div class="infield-label">
       <label for="input-name">Your Name</label>

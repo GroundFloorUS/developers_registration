@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require twitter/bootstrap
+//= require jquery.validate.min
+//= require additional-methods.min
 //= require_self
 
 function validate_developer_profile() {
@@ -30,3 +32,11 @@ function validate_project() {
 	$("#project_close_timeline").val($("#input-close-timeline > button.active").val());
 	return true;
 }
+
+$(document).ready(function() {
+	if ($("#registration_form").length > 0) {
+		$("#registration_form").validate({
+			// Form options here
+		});
+	}
+});

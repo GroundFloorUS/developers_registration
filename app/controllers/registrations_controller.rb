@@ -1,11 +1,15 @@
 class RegistrationsController < ApplicationController
   before_filter :set_registration
-  before_filter :authenticate_user!, :except => [:account, :create_account, :profile]
+  before_filter :authenticate_user!, :except => [:index, :account, :create_account, :profile]
   
   def set_registration
     @path = request.fullpath.split("?").first
     @registration = session[:registration]
     logger.debug("Registration: #{@registration.inspect}")
+  end
+  
+  def index
+    
   end
   
   def account
@@ -20,10 +24,16 @@ class RegistrationsController < ApplicationController
   end
   
   def create_account
-    user = User.create(params[:user].merge(password_confirmation: params[:user][:password]))
-    sign_in(user)
-    session[:registration] = Registration.new(user_id: user.id, name: user.name, first_name: user.first_name, last_name: user.last_name, has_projects: false, completed: false)
-    redirect_to profile_path
+    @user = User.new(params[:user].merge(password_confirmation: params[:user][:password]))
+    if @user.save
+      sign_in(@user)
+      session[:registration] = Registration.new(user_id: user.id, name: user.name, first_name: user.first_name, last_name: user.last_name, has_projects: false, completed: false)
+      render profile_path
+    else
+      flash[:error] = "Your user was not created, please address the form errors listed below and try again: <span>#{@user.errors.full_messages.join('<br>')}</span>"
+      logger.error("Errors Saving User: #{@user.errors.full_messages}")
+      redirect_to root_path
+    end
   end
 
   def profile

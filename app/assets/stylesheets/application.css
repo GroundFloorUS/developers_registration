@@ -11,5 +11,10 @@
  *= require bootstrap_and_overrides
  *= require_self
  */
+
+.alert.alert-error span {
+	margin: 8px 0px 0px 18px;
+	display: block;
+}
   
   
