@@ -27,7 +27,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(params[:user].merge(password_confirmation: params[:user][:password]))
     if @user.save
       sign_in(@user)
-      session[:registration] = Registration.new(user_id: user.id, name: user.name, first_name: user.first_name, last_name: user.last_name, has_projects: false, completed: false)
+      session[:registration] = Registration.new(user_id: @user.id, name: @user.name, first_name: @user.first_name, last_name: @user.last_name, has_projects: false, completed: false)
       render profile_path
     else
       flash[:error] = "Your user was not created, please address the form errors listed below and try again: <span>#{@user.errors.full_messages.join('<br>')}</span>"
