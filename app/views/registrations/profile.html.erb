@@ -6,7 +6,7 @@
     <div class="span8">
       <div class="box white">
 				<% unless @profile.id %>
-        	<p class="message">Tell us a bit more about yourself so we can figure out how to work with you.</p>
+        	<p class="message">Hello NAME! Tell us about your real estate development work so we can determine how best to serve you.</p>
 				<% else %>
 					<%= display_flash_messages(flash) %>
 				<% end %>
@@ -15,7 +15,7 @@
           <fieldset>
             <!-- <legend>Join Groundfloor</legend> -->
             <div class="">
-              <label for="input-phone">What Phone Number Can We Reach You At?</label>
+              <label for="input-phone">Phone Number Where We Can Reach You?</label>
 							<%= f.text_field :phone_number, placeholder: "19195551212", class: "span3" %>
             </div>
             <div class="question">
@@ -56,7 +56,7 @@
               </div>
             </div>
             <div class="question">
-              <label for="input-why-interested">Why are you interested in participating in our beta program?</label>
+              <label for="input-why-interested">How can Groundfloor help you?</label>
 							<%= f.text_area :why, rows: 3, class: "input-block-level" %>
             </div>
             <div class="question">
