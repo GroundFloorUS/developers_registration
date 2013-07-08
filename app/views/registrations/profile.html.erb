@@ -6,7 +6,7 @@
     <div class="span8">
       <div class="box white">
 				<% unless @profile.id %>
-        	<p class="message">Hello <%= @user.first_name %> Tell us about your real estate development work so we can determine how best to serve you.</p>
+        	<p class="message">Hello <%= @user.first_name %>! Tell us about your real estate development work so we can determine how best to serve you.</p>
 				<% else %>
 					<%= display_flash_messages(flash) %>
 				<% end %>
