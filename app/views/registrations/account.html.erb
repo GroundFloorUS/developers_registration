@@ -7,6 +7,8 @@
       <div class="box white">
 				<% unless @user.id %>
         	<p class="message">Before you can create your profile you must confirm the following information.</p>
+				<% else %>
+					<p class="message">You’re all set to log in with your [Facebook] account ID. Please confirm your name and email.</p>
 				<% end %>
 				<%= render partial: "account", locals: { user: @user } %>
       </div>
