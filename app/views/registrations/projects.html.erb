@@ -11,7 +11,7 @@
 					<% if @project.new_record? %>
         		<p class="message"><b>Have another project to add?</b> Tell us about it below, or <%= link_to "finish and learn what to expect.", thanks_path %></p>
 					<% else %>
-       			<p class="message"><b>Need to edit or delete this project? Make your changes below, or <%= link_to "cancel.", thanks_path %></p>
+       			<p class="message"><b>Need to edit or delete this project?</b> Make your changes below, or <%= link_to "cancel.", thanks_path %></p>
 					<% end %>
 					<%= display_flash_messages(flash) %>
 				<% end %>
