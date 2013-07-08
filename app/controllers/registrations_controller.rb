@@ -124,7 +124,7 @@ class RegistrationsController < ApplicationController
   def delete_project
     project = Project.find_by_user_id_and_id(current_user.id, params[:id])
     if project && project.destroy 
-      flash.now[:info] = "Your project has been removed."
+      flash.now[:info] = "<b>Your project has been removed</b>. Add another below, or #{link_to("finish and learn what to expect.", thanks_path)}"
     end
     
     @project = Project.new(user_id: current_user.id)
