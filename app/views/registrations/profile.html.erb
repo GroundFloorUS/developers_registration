@@ -14,11 +14,7 @@
           <br>
           <fieldset>
             <!-- <legend>Join Groundfloor</legend> -->
-            <div class="">
-              <label for="input-phone">Phone Number Where We Can Reach You?</label>
-							<%= f.text_field :phone_number, placeholder: "19195551212", class: "span3" %>
-            </div>
-            <div class="question">
+            <div>
               <label>Total debt plus equity typically invested in your projects:</label>
 							<%= f.hidden_field :total_debt_plus_equity %>
               <div data-toggle="buttons-radio" class="btn-group" id="input-total-debt">
@@ -62,6 +58,10 @@
             <div class="question">
               <label>How did you hear about us?</label>
 							<%= f.select :how_did_you_hear, DeveloperProfile::WHERE_DID_YOU_HEAR, {}, { }%>
+            </div>
+            <div class="question">
+              <label for="input-phone">Phone Number Where We Can Reach You?</label>
+							<%= f.text_field :phone_number, placeholder: "19195551212", class: "span3" %>
             </div>
             <div class="input-friend" id="friend">
               <label for="input-friend">Which friend or associate told you about us?</label>
