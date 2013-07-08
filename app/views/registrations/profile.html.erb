@@ -5,11 +5,7 @@
   <div class="row">
     <div class="span8">
       <div class="box white">
-				<% unless @profile.id %>
-        	<p class="message">Hello <%= @user.first_name %>! Tell us about your real estate development work so we can determine how best to serve you.</p>
-				<% else %>
-					<%= display_flash_messages(flash) %>
-				<% end %>
+        <p class="message"><b>Hello <%= current_user.first_name %>!</b> Tell us about your real estate development work so we can determine how best to serve you.</p>
 	  		<%= form_for(@profile, url: projects_path, :method => :post) do |f| %>
           <br>
           <fieldset>

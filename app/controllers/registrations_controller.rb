@@ -56,12 +56,12 @@ class RegistrationsController < ApplicationController
           end if @user.avatar_url.blank?
 
           if @user.new_record?
-            flash.now[:info] = "<b>Your off to a great start.</b> Your account has been created"
+            #flash.now[:info] = "<b>Your off to a great start.</b> Your account has been created"
             @user.password = temp_password
             @user.password_confirmation = temp_password
           end
           if @user.changed? && @user.save!
-            flash.now[:info] = (current_user.present? ? "<b>Your off to a great start.</b> Your account has been created" : "<b>Thanks</b>  Your account has been updated.")
+            #flash.now[:info] = (current_user.present? ? "<b>Your off to a great start.</b> Your account has been created" : "<b>Thanks</b>  Your account has been updated.")
           end
         
           # sign in the new user unless he is already signed in
@@ -97,7 +97,7 @@ class RegistrationsController < ApplicationController
           @profile.send("#{key}=".to_sym, value) if @profile.attributes.has_key? key
         end
         if @profile.changed? && @profile.save
-          flash.now[:info] = (params[:developer_profile][:id].nil? ? "<b>Great News!</b>  Your profile has been created." : "<b>Thanks</b>  Your profile has been updated.")
+          #flash.now[:info] = (params[:developer_profile][:id].nil? ? "<b>Great News!</b>  Your profile has been created." : "<b>Thanks</b>  Your profile has been updated.")
         end
         @registration.developer_profile_id = @profile.id unless @registration.developer_profile_id
       end
@@ -110,7 +110,7 @@ class RegistrationsController < ApplicationController
           @project.send("#{key}=".to_sym, value) if @project.attributes.has_key? key
         end
         if @project.changed? && @project.save
-          flash.now[:info] = (params[:project][:id].nil? ? "<b>Great News!</b>  Your project has been created." : "<b>Thanks</b>  Your project has been updated.")
+          #flash.now[:info] = (params[:project][:id].nil? ? "<b>Great News!</b>  Your project has been created." : "<b>Thanks</b>  Your project has been updated.")
         end
       end
       @registration.has_projects = true
@@ -124,7 +124,7 @@ class RegistrationsController < ApplicationController
   def delete_project
     project = Project.find_by_user_id_and_id(current_user.id, params[:id])
     if project && project.destroy 
-      flash.now[:info] = "<b>Your project has been removed</b>. Add another below, or #{link_to("finish and learn what to expect.", thanks_path)}"
+      #flash.now[:info] = "<b>Your project has been removed</b>. Add another below, or #{link_to("finish and learn what to expect.", thanks_path)}"
     end
     
     @project = Project.new(user_id: current_user.id)

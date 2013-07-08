@@ -8,11 +8,12 @@
 				<% unless @projects.length > 0 %>
         	<p class="message"><b>Thanks for joining!</b> Now, tell us about the projects you’d like us to consider featuring on Groundfloor. Fill out the project information for the first one below.</p>
 				<% else %>
-					<% if @project.id %>
+					<% if @project.new_record? %>
         		<p class="message"><b>Have another project to add?</b> Tell us about it below, or <%= link_to "finish and learn what to expect.", thanks_path %></p>
 					<% else %>
-						<%= display_flash_messages(flash) %>
+       			<p class="message"><b>Need to edit or delete this project? Make your changes below, or <%= link_to "cancel.", thanks_path %></p>
 					<% end %>
+					<%= display_flash_messages(flash) %>
 				<% end %>
 	  		<%= form_for(@project, url: projects_path, :method => :post) do |f| %>
 					<%= f.hidden_field :id %>
