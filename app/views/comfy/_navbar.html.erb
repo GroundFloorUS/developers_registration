@@ -9,16 +9,16 @@
   <div class="span12">
     <div class="wizard">
       <a href="<%= account_path %>" class="<%= path == account_path ? "current" : (step > 1 ? "completed" : "") %>">
-				<span class="badge"><%= step > 1 ? raw("<i class=\"icon-ok\"></i>") : "1" %></span> Create account
+				<span class="badge"><%= step > 1 ? raw("<i class=\"icon-ok\"></i>") : "1" %></span> Account
 			</a>
       <a href="<%= profile_path %>" class="<%= path == profile_path ? "current" : (step > 2 ? "completed" : "") %>">
-				<span class="badge"><%= step > 2 ? raw("<i class=\"icon-ok\"></i>") : "2" %></span> Create your profile
+				<span class="badge"><%= step > 2 ? raw("<i class=\"icon-ok\"></i>") : "2" %></span> Profile
 			</a>
       <a href="<%= projects_path %>" class="<%= path == projects_path ? "current" : (step > 3 ? "completed" : "") %>">
-				<span class="badge badge-inverse"><%= step > 3 ? raw("<i class=\"icon-ok\"></i>") : "3" %></span> Add your projects
+				<span class="badge badge-inverse"><%= step > 3 ? raw("<i class=\"icon-ok\"></i>") : "3" %></span> Projects
 			</a>
       <a href="<%= thanks_path %>" class="<%= path == thanks_path ? "current" : (step > 4 ? "completed" : "") %>">
-				<span class="badge"><%= step > 4 ? raw("<i class=\"icon-ok\"></i>") : "4" %></span> Review next steps
+				<span class="badge"><%= step > 4 ? raw("<i class=\"icon-ok\"></i>") : "4" %></span> Next Steps
 			</a>
     </div>
   </div>
