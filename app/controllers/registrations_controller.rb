@@ -109,8 +109,12 @@ class RegistrationsController < ApplicationController
         params[:project].each do |key, value|
           @project.send("#{key}=".to_sym, value) if @project.attributes.has_key? key
         end
-        if @project.changed? && @project.save
-          flash.now[:info] = (params[:project][:id].nil? ? "<b>Great News!</b>  Your project has been created." : "<b>Thanks</b>  Your project has been updated.")
+        if @project.changed? 
+          if @project.save
+            flash.now[:info] = (params[:project][:id].nil? ? "<b>Great News!</b>  Your project has been created." : "<b>Thanks</b>  Your project has been updated.")
+          else
+            flash.now[:error] = "Your project was not created, please address the form errors listed below and try again: <span>#{@project.errors.full_messages.join('<br>')}</span>"
+          end
         end
       end
       @registration.has_projects = true

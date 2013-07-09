@@ -3,7 +3,11 @@ class Project < ActiveRecord::Base
   
   belongs_to :user
   
-  validates_presence_of :name, :city, :state, :amount_to_raise, :captial_type
+  validates :city, presence: true
+  validates :state, presence: true
+  validates :capital_type, presence: true
+  validates :amount_to_raise, presence: true
+  
   
   CATEGORIES = ["Single Family For Sale", "Single Family For Lease", "Duplex", "Multifamily", "Apartment Complex", "Land", "Retail", "Office", "Restaurant", "Lodging / Resort", "Other"]
   AMOUNT_TO_RAISE = ["50-250K", "250K-$1M", "$1-5M", ">$5M"]
