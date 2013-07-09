@@ -13,8 +13,8 @@
 					<% else %>
        			<p class="message"><b>Need to edit or delete this project?</b> Make your changes below, or <%= link_to "cancel.", thanks_path %></p>
 					<% end %>
-					<%= display_flash_messages(flash) %>
 				<% end %>
+				<%= display_flash_messages(flash) %>
 	  		<%= form_for(@project, url: projects_path, :method => :post) do |f| %>
 					<%= f.hidden_field :id %>
           <br>
@@ -84,16 +84,24 @@
               </div>
             </div>
             <br>
+						<input type="hidden" name="add_another" id="add_another" />
 
-         		<button type="submit" class="btn btn-primary btn-large" onclick="return validate_project();">Save Project&nbsp;&nbsp;</button>
-						
-						<% unless @project.new_record? %>
-							<%= link_to "Remove Project", delete_project_path(id: @project.id), :method => :delete, class: "btn btn-danger btn-large", :confirm => "Are you sure you want to remove this project from consideration?" %> 
-						<% end %>
-						
 						<% if @projects.length > 0 %>
-							<%= link_to "Finish Adding Projects", thanks_path, class: "btn btn-primary btn-large" %> 
+							<%= link_to "Cancel", thanks_path, class: "btn btn-primary btn-large" %> 
 						<% end %>
+
+						<% unless @project.new_record? %>
+     					<button type="submit" class="btn btn-primary btn-large" onclick="return validate_project();">Save Project</button>
+
+							<%= link_to "Remove Project", delete_project_path(id: @project.id), :method => :delete, class: "btn btn-danger btn-large", :confirm => "Are you sure you want to remove this project from consideration?" %> 
+						<% else %>
+						
+     					<button type="submit" class="btn btn-primary btn-large" onclick="$('#add_another').val('true');return validate_project();">Save & Add Another</button>
+
+     					<button type="submit" class="btn btn-primary btn-large" onclick="return validate_project();">Save & Finish</button>
+
+						<% end %>
+						
 						
           </fieldset>
 		  	<% end %>

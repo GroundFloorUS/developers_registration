@@ -90,6 +90,8 @@ class RegistrationsController < ApplicationController
   
   def projects
     logger.debug("Step: #{@registration.step}")
+    saved = false
+    
     if params[:developer_profile].present?
       @profile = @registration.developer_profile_id ? DeveloperProfile.find(@registration.developer_profile_id) : DeveloperProfile.new(user_id: @registration.user_id)
       @profile.transaction do
@@ -109,18 +111,32 @@ class RegistrationsController < ApplicationController
         params[:project].each do |key, value|
           @project.send("#{key}=".to_sym, value) if @project.attributes.has_key? key
         end
-        if @project.changed? 
-          unless @project.save
-            flash.now[:error] = "Your project was not created. Please address the errors listed below and try again: <span>#{@project.errors.full_messages.join('<br>')}</span>"
-          end
+
+        logger.debug("SAVING PROEJCT")
+        if @project.save
+          saved = true
+        else 
+          flash.now[:error] = "Your project was not created. Please address the errors listed below and try again: <span>#{@project.errors.full_messages.join('<br>')}</span>"
         end
+        
       end
       @registration.has_projects = true
     end  
     
     session[:registration] = @registration
-    @project = Project.find_by_user_id_and_id(current_user.id, params[:id]) || Project.new(user_id: current_user.id) unless @project
     @projects = current_user.projects
+
+    # Now redirect to thanks since this was a post and we are done with the project
+    if saved
+      if params[:add_another].present? 
+        logger.debug("Adding Another Project")
+        @project = Project.new(user_id: current_user.id) 
+      else
+        redirect_to :thanks if params[:project].present?
+      end
+    end
+    logger.debug("Last Errors: #{flash.inspect} ")
+    #@project = Project.find_by_user_id_and_id(current_user.id, params[:id]) || Project.new(user_id: current_user.id) unless @project
   end
   
   def delete_project
