@@ -49,7 +49,7 @@ class Groundfloor::SessionsController < Devise::SessionsController
          @identity.user = current_user
          @identity.save()
        end
-       session[:registration] = Registration.new(identity_id: @identity.id, user_id: current_user.id, social_profile_id: @profile.id, name: @profile.name, first_name: current_user.first_name, last_name: current_user.last_name, developer_profile_id: current_user.developer_profile.id, has_projects: (current_user.projects.length > 0 ? true : false), completed: current_user.registration_completed)
+       session[:registration] = Registration.new(identity_id: @identity.id, user_id: current_user.id, social_profile_id: @profile.id, name: @profile.name, first_name: current_user.first_name, last_name: current_user.last_name, developer_profile_id: (current_user.developer_profile ? current_user.developer_profile.id : nil), has_projects: (current_user.projects.length > 0 ? true : false), completed: current_user.registration_completed)
        sign_in(current_user)
        redirect_to current_user.registation_url
      else
