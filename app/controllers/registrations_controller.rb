@@ -147,7 +147,11 @@ class RegistrationsController < ApplicationController
     
     @project = Project.new(user_id: current_user.id)
     @projects = current_user.projects
-    render :action => :projects
+    if @projects.length > 0
+      redirect_to :thanks
+    else
+      render :action => :projects
+    end
   end
   
   def thanks
