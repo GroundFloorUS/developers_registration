@@ -39,4 +39,11 @@ $(document).ready(function() {
 			// Form options here
 		});
 	}
+	
+	if ($("#registration_form").length > 0) {
+		$("#registration_form").validate({
+			// Form options here
+		});
+	}
+	
 });

@@ -31,7 +31,7 @@
 									<%= f.text_field :city, placeholder: "Raleigh", class: "span2" %>
 								</div>
 								<div class="span1">
-									<%= f.select :state, us_states, {}, { class: "state" } %>
+									<%= f.select :state, us_states, { include_blank: "Please Select A State" }, { } %>
 								</div>
 							</div>
             </div>
@@ -41,7 +41,7 @@
             </div>
             <div class="question">
               <label>Category:</label>
-							<%= f.select :category, Project::CATEGORIES, {}, {} %>
+							<%= f.select :category, Project::CATEGORIES, { include_blank: "Please Select A Category" }, {} %>
             </div>
             <div class="question">
               <label>Amount you're seeking to raise:</label>
