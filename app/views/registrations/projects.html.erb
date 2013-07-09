@@ -6,7 +6,7 @@
     <div class="span8">
       <div class="box white">
 				<% unless @projects.length > 0 %>
-        	<p class="message"><b>Thanks for joining!</b> Now, tell us about the projects you’d like us to consider featuring on Groundfloor. Fill out the project information for the first one below.</p>
+        	<p class="message"><b>Thanks for joining!</b> Now, tell us about the projects you’d like us to consider featuring on GROUNDFLOOR. Fill out the project information for the first one below.</p>
 				<% else %>
 					<% if @project.new_record? %>
         		<p class="message"><b>Have another project to add?</b> Tell us about it below, or <%= link_to "finish and learn what to expect.", thanks_path %></p>
@@ -19,7 +19,7 @@
 					<%= f.hidden_field :id %>
           <br>
           <fieldset>
-            <!-- <legend>Join Groundfloor</legend> -->
+            <!-- <legend>Join GROUNDFLOOR</legend> -->
             <div class="infield-label">
               <label for="input-name">Project Name</label>
 							<%= f.text_field :name, placeholder: "315 West Street", class: "span3" %>
@@ -44,7 +44,7 @@
 							<%= f.select :category, Project::CATEGORIES, { include_blank: "Please Select A Category" }, {} %>
             </div>
             <div class="question">
-              <label>Amount you're seeking to raise:</label>
+              <label>Amount you're seeking to raise with GROUNDFLOOR:</label>
 							<%= f.hidden_field :amount_to_raise %>
               <div data-toggle="buttons-radio" class="btn-group" id="input-amount-to-raise">
 								<% Project::AMOUNT_TO_RAISE.each do |option| %>
@@ -53,7 +53,7 @@
               </div>
             </div>
             <div class="question">
-              <label>Type of capital you're seeking to raise:</label>
+              <label>Type of financing you're seeking to raise with GROUNDFLOOR:</label>
 							<%= f.hidden_field :capital_type %>
               <div data-toggle="buttons-radio" class="btn-group" id="input-captial-type">
 								<% Project::CAPTIAL_TYPE.each do |option| %>
@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="question">
-              <label for="input-status">Project status</label>
+              <label for="input-status">Project status (i.e. Do you own the property? How is it financed? Are there any liens? etc)</label>
 							<%= f.text_area :status, rows: 3, class: "input-block-level" %>
 						</div>
             <div class="question">
@@ -84,10 +84,17 @@
               </div>
             </div>
             <br>
-            <button type="submit" class="btn btn-primary btn-large" onclick="return validate_project();">Save Project&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></button>
-						<% unless @project.id.nil? %>
+
+         		<button type="submit" class="btn btn-primary btn-large" onclick="return validate_project();">Save Project&nbsp;&nbsp;</button>
+						
+						<% unless @project.new_record? %>
 							<%= link_to "Remove Project", delete_project_path(id: @project.id), :method => :delete, class: "btn btn-danger btn-large", :confirm => "Are you sure you want to remove this project from consideration?" %> 
 						<% end %>
+						
+						<% if @projects.length > 0 %>
+							<%= link_to "Finish Adding Projects", thanks_path, class: "btn btn-primary btn-large" %> 
+						<% end %>
+						
           </fieldset>
 		  	<% end %>
       </div>

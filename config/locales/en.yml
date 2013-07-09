@@ -5,7 +5,7 @@ en:
   activerecord:
     attributes:
       project:
-        capital_type: "Type of capital you are seeking to raise"
+        capital_type: "Type of financing you are seeking to raise"
         amount_to_raise: "Amount you are seeking to raise"
     errors:
       models:
