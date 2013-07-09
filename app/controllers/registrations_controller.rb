@@ -136,7 +136,7 @@ class RegistrationsController < ApplicationController
       end
     end
     logger.debug("Last Errors: #{flash.inspect} ")
-    #@project = Project.find_by_user_id_and_id(current_user.id, params[:id]) || Project.new(user_id: current_user.id) unless @project
+    @project = Project.find_by_user_id_and_id(current_user.id, params[:id]) || Project.new(user_id: current_user.id) unless @project
   end
   
   def delete_project
