@@ -111,7 +111,7 @@ class RegistrationsController < ApplicationController
         end
         if @project.changed? 
           unless @project.save
-            flash.now[:error] = "Your project was not created, please address the form errors listed below and try again: <span>#{@project.errors.full_messages.join('<br>')}</span>"
+            flash.now[:error] = "Your project was not created. Please address the errors listed below and try again: <span>#{@project.errors.full_messages.join('<br>')}</span>"
           end
         end
       end
