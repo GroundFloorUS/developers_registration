@@ -40,10 +40,24 @@ $(document).ready(function() {
 		});
 	}
 	
-	if ($("#registration_form").length > 0) {
-		$("#registration_form").validate({
-			// Form options here
-		});
-	}
+	if ($("#developer_profile_how_did_you_hear").length > 0) {
+		$('#developer_profile_how_did_you_hear').change(function(e) {
+	    if ($(this).val()=='Friend / Associate') {
+				$("#friend_label").html("Which friend or associate told you about us?");
+	      $('#friend').slideDown(300).css({display:'block'});
+			} else if ($(this).val()=='Trade Association') {
+				$("#friend_label").html("Which trade association told you about us?");
+	      $('#friend').slideDown(300).css({display:'block'});
+			} else if ($(this).val()=='Online Discussion Board') {
+				$("#friend_label").html("Which online discussion board told you about us?");
+	      $('#friend').slideDown(300).css({display:'block'});
+			} else if ($(this).val()=='News Article') {
+				$("#friend_label").html("Which news organization told you about us?");
+	      $('#friend').slideDown(300).css({display:'block'});
+	    } else {
+	      $('#friend').slideUp(300);
+	    }
+	  });
+  }
 	
 });

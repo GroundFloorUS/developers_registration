@@ -55,15 +55,14 @@
               <label>How did you hear about us?</label>
 							<%= f.select :how_did_you_hear, DeveloperProfile::WHERE_DID_YOU_HEAR, { include_blank: true }, { }%>
             </div>
+            <div class="input-friend" id="friend">
+              <label id="friend_label" for="input-friend"></label>
+							<%= f.text_field :how_response, class: "span5" %>
+            </div>
             <div class="question">
               <label for="input-phone">Phone number where we can reach you?</label>
 							<%= f.text_field :phone_number, placeholder: "919-555-1212", class: "span3" %>
             </div>
-            <div class="input-friend" id="friend">
-              <label for="input-friend">Which friend or associate told you about us?</label>
-              <input type="text" name="input-friend" id="input-friend" class="span5" />
-            </div>
-
 				    <button type="submit" onclick="return validate_developer_profile();" class="btn btn-primary btn-large"><%= @profile.id ? "Update your profile" : "Create your profile"%>&nbsp;&nbsp;</button>
 
           </fieldset>
