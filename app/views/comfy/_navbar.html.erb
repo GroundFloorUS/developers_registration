@@ -3,6 +3,9 @@
 	  <div class="span8">
 	    <h1 class="alt color2"><%= title %></h1><br>
 	  </div>
+    <div class="span4">
+			<%= link_to "Log Out", destroy_user_session_path, :method => :delete, class: "btn btn-info login" %>
+	  </div>
 	</div>
 <% end %>
 <div class="row hidden-phone">
