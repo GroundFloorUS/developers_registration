@@ -3,6 +3,7 @@ class Project < ActiveRecord::Base
   
   belongs_to :user
   
+  validates :name, presence: true
   validates :city, presence: true
   validates :state, presence: true
   validates :capital_type, presence: true

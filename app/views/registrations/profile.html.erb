@@ -53,7 +53,7 @@
             </div>
             <div class="question">
               <label>How did you hear about us?</label>
-							<%= f.select :how_did_you_hear, DeveloperProfile::WHERE_DID_YOU_HEAR, {}, { }%>
+							<%= f.select :how_did_you_hear, DeveloperProfile::WHERE_DID_YOU_HEAR, { include_blank: true }, { }%>
             </div>
             <div class="question">
               <label for="input-phone">Phone number where we can reach you?</label>
