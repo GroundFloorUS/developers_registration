@@ -132,6 +132,11 @@ class RegistrationsController < ApplicationController
         logger.debug("Adding Another Project")
         @project = Project.new(user_id: current_user.id) 
       else
+        if params[:project] && params[:project][:id].present?
+          flash[:notice] = "<b>Thanks.</b>  Your project has been successfully updated."
+        else
+          flash[:notice] = "<b>Nice work!</b> Your project has been successfully created. Click in the blue box to edit, delete, or add another."
+        end
         redirect_to :thanks if params[:project].present?
       end
     end
@@ -142,7 +147,7 @@ class RegistrationsController < ApplicationController
   def delete_project
     project = Project.find_by_user_id_and_id(current_user.id, params[:id])
     if project && project.destroy 
-      #flash.now[:info] = "<b>Your project has been removed</b>. Add another below, or #{link_to("finish and learn what to expect.", thanks_path)}"
+      flash[:notice] = "<b>Confirmed.</b> Your project has been removed."
     end
     
     @project = Project.new(user_id: current_user.id)
