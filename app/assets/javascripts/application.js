@@ -55,6 +55,7 @@ $(document).ready(function() {
 				$("#friend_label").html("Which news organization told you about us?");
 	      $('#friend').slideDown(300).css({display:'block'});
 	    } else {
+				$("#developer_profile_how_response").val("");
 	      $('#friend').slideUp(300);
 	    }
 	  });

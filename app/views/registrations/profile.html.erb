@@ -55,7 +55,7 @@
               <label>How did you hear about us?</label>
 							<%= f.select :how_did_you_hear, DeveloperProfile::WHERE_DID_YOU_HEAR, { include_blank: true }, { }%>
             </div>
-            <div class="input-friend" id="friend">
+            <div class="<%= @profile.how_response.blank? ? "input-friend" : "" %>" id="friend">
               <label id="friend_label" for="input-friend"></label>
 							<%= f.text_field :how_response, class: "span5" %>
             </div>
