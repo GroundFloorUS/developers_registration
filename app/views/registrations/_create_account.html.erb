@@ -12,12 +12,12 @@
       <label for="input-password">Password</label>
 			<%= f.password_field :password, class: "required input-block-level" %>
     </div>
-    <button type="submit" class="btn btn-primary btn-large btn-block">Continue&nbsp;&nbsp;</button>
+    <button type="submit" class="btn btn-primary btn-large btn-block">Create My Account</button>
   </fieldset>
 <% end %>
 <% unless local_assigns.has_key? :user %>
 	<div class="or">
-	  <p>or login using your social account:</p>
+	  <p>or signup using your social account:</p>
 	  <a href="/auth/facebook" class="btn"><i class="icon-facebook"></i>&nbsp;&nbsp;Facebook</a>
 	  <a href="/auth/twitter" class="btn"><i class="icon-twitter"></i>&nbsp;&nbsp;Twitter</a>
 	  <a href="/auth/linkedin" class="btn"><i class="icon-linkedin"></i>&nbsp;&nbsp;LinkedIn</a>

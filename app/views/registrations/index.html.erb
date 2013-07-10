@@ -2,7 +2,6 @@
 body {background:#fff;}
 </style>
 
-<a href="/users/sign_in" class="btn btn-primary login"><i class="icon-signin"></i>&nbsp;&nbsp;Log In</a>
 <div class="container">
   <div class="row">
     <div class="span12">
@@ -16,14 +15,17 @@ body {background:#fff;}
     <div class="span4 offset1">
 			<%= display_flash_messages(flash) %>
       <div class="join why home no-bg">
-        <legend>Join for free</legend>
+				<div class="header">
+        	<span>Join for free</span>
+					<a href="/users/sign_in" class="btn"><i class="icon-signin"></i>&nbsp;&nbsp;Log In</a>
+				</div>
         <%= render partial: "registrations/create_account" %>
       </div>
       <br><br>
     </div>
   </div>
 </div>
-<div class="bg-city hidden-phone"></div>
 <div class="index-footer">
 	<%= cms_snippet_content("footer") %>
-</div>
+</div>	
+<div class="bg-city hidden-phone"></div>
