@@ -28,20 +28,6 @@ ActiveRecord::Schema.define(:version => 20130630183057) do
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
-  create_table "addresses", :force => true do |t|
-    t.integer  "addressable_id"
-    t.string   "addressable_type"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "zipcode"
-    t.string   "state"
-    t.string   "country"
-    t.string   "label"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -200,18 +186,6 @@ ActiveRecord::Schema.define(:version => 20130630183057) do
   end
 
   add_index "identities", ["user_id"], :name => "index_identities_on_user_id"
-
-  create_table "investments", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "prospect_quantity"
-    t.datetime "prospected_at"
-    t.integer  "prospected_price"
-    t.integer  "commited_quantity"
-    t.datetime "commited_at"
-    t.integer  "commited_price"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-  end
 
   create_table "projects", :force => true do |t|
     t.integer  "user_id"
