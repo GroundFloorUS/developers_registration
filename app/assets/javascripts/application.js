@@ -45,6 +45,12 @@ $(document).ready(function() {
 			// Form options here
 		});
 	}
+
+	if ($("#create_account").length > 0) {
+		$("#create_account").validate({
+			// Form options here
+		});
+	}
 	
 	if ($("#developer_profile_how_did_you_hear").length > 0) {
 		$('#developer_profile_how_did_you_hear').change(function(e) {

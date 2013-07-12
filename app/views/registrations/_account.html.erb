@@ -1,4 +1,4 @@
-<%= form_for(user, url: profile_path, :method => :post) do |f| %>
+<%= form_for(user, url: profile_path, :method => :post, html: { id: "create_account" }) do |f| %>
 	<%= f.hidden_field :id %>
 	<fieldset>
     <div class="infield-label"> 

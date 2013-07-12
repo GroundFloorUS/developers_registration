@@ -66,23 +66,24 @@ class RegistrationsController < ApplicationController
             @user.password = temp_password
             @user.password_confirmation = temp_password
           end
-          if @user.changed? && @user.save!
-            #flash.now[:info] = (current_user.present? ? "<b>Your off to a great start.</b> Your account has been created" : "<b>Thanks</b>  Your account has been updated.")
-          end
+          unless @user.save
+            flash[:error] = "Your user was not created, please address the form errors listed below and try again: <span>#{@user.errors.full_messages.join('<br>')}</span>"
+            redirect_to account_path
+          else
+            # sign in the new user unless he is already signed in
+            sign_in(@user) unless current_user
         
-          # sign in the new user unless he is already signed in
-          sign_in(@user) unless current_user
-        
-          @social_profile.update_attribute(:user_id, @user.id) if @social_profile && @user.id 
-          @identity = ((@registration && @registration.identity_id) ? Identity.find(@registration.identity_id) : Identity.create(provider: "groundfloor"))
-          @identity.update_attribute(:user_id,  @user.id)
+            @social_profile.update_attribute(:user_id, @user.id) if @social_profile && @user.id 
+            @identity = ((@registration && @registration.identity_id) ? Identity.find(@registration.identity_id) : Identity.create(provider: "groundfloor"))
+            @identity.update_attribute(:user_id,  @user.id)
 
-          @registration.user_id = @user.id
+            @registration.user_id = @user.id
       
-          # verify that the registration has the idenity or set it if it is not ther
-          @registration.identity_id = @identity.id unless @registration.identity_id
+            # verify that the registration has the idenity or set it if it is not ther
+            @registration.identity_id = @identity.id unless @registration.identity_id
         
-          RolesUsers.create(user_id: @registration.user_id, role_id: Role.find_by_name(Role::DEVELOPER).id) 
+            RolesUsers.create(user_id: @registration.user_id, role_id: Role.find_by_name(Role::DEVELOPER).id) 
+          end
         end
       end
 

@@ -10,6 +10,7 @@
 				<% else %>
 					<p class="message"><b>You’re all set</b>. Please confirm your name and email.</p>
 				<% end %>
+				<%= display_flash_messages(flash) %>
 				<%= render partial: "account", locals: { user: @user } %>
       </div>
     </div>
