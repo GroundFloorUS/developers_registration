@@ -1,12 +1,35 @@
-<h2>Forgot your password?</h2>
+<style>
+body {background:#313E46; padding-top:0;}
+</style>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="container">
+  <div class="row">
+    <div class="span6 offset3 center">
+      <div class="brand-wrapper bottom">
+        <a class="brand" href="/"><img src="/assets/developers/logo.png" width="182" /></a>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4 offset4">
+      <div class="signup">
+		<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post, id: "password_reset" }) do |f| %>
+		  <fieldset>
+			  <h3>Reset Your Password</h3>
+		    <br>
+		    <div class="infield-label">
+		      <label for="input-email">Email address</label>
+          <%= f.email_field :email, :autofocus => true, class: "required" %>
+        </div>
+			  <br>
+        <div>  
+					<button type="submit" class="btn btn-primary btn-block btn-large">Send Me Instructions&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></button>
+				</div>
+			</fieldset>
+		<% end %>
+		</div>
+  </div>
+</div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
 
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
 
-<%= render "users/shared/links" %>
