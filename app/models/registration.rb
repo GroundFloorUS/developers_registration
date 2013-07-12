@@ -22,9 +22,8 @@ class Registration
   def step
     return 1 if self.user_id.nil?
     return 2 if self.user_id && self.developer_profile_id.nil?
-    return 3 if self.developer_profile_id && !self.has_projects
-    return 4 if self.has_projects && !completed
-    return 5 if self.completed
+    return 3 if self.developer_profile_id && !self.completed
+    return 4 if self.completed
   end
   
   def persisted?

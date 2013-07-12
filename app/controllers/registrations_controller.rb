@@ -43,52 +43,62 @@ class RegistrationsController < ApplicationController
   end
 
   def profile
-    if @registration
-      if params[:user].present?
-        temp_password = SecureRandom.hex(10)
-        @user = (params[:user][:id].present? ? current_user : User.create(params[:user].merge(password_confirmation: params[:user][:password])) )
-        logger.debug("User: #{@user.inspect}")
-        User.transaction do 
-          @social_profile = SocialProfile.find(@registration.social_profile_id) if @registration.social_profile_id
-        
-          params[:user].each do |key, value|
-            @user.send("#{key}=".to_sym, value) if @user.attributes.has_key? key
-          end 
-
-          if @social_profile && @social_profile.profile_image
-            @user.avatar_url = @social_profile.profile_image
-          else
-            @user.avatar_url = Gravatar.new(@user.email).image_url 
-          end if @user.avatar_url.blank?
-
-          if @user.new_record?
-            #flash.now[:info] = "<b>Your off to a great start.</b> Your account has been created"
-            @user.password = temp_password
-            @user.password_confirmation = temp_password
-          end
-          unless @user.save
-            flash[:error] = "Your user was not created, please address the form errors listed below and try again: <span>#{@user.errors.full_messages.join('<br>')}</span>"
-            redirect_to account_path
-          else
-            # sign in the new user unless he is already signed in
-            sign_in(@user) unless current_user
-        
-            @social_profile.update_attribute(:user_id, @user.id) if @social_profile && @user.id 
-            @identity = ((@registration && @registration.identity_id) ? Identity.find(@registration.identity_id) : Identity.create(provider: "groundfloor"))
-            @identity.update_attribute(:user_id,  @user.id)
-
-            @registration.user_id = @user.id
+    if @registration 
+      # if there is no signed in user and the user form was not submitted then check to see if this came from the account page
+      if (current_user.nil? && params[:user].nil?)
+        if request.referrer.split("/").last == "account"
+          flash[:error] = "You must complete this step before moving to the next step"
+          redirect_to account_path
+        else
+          redirect_to root_path
+        end
+      else 
+        if params[:user].present?
+          temp_password = SecureRandom.hex(10)
+          @user = (params[:user][:id].present? ? current_user : User.create(params[:user].merge(password_confirmation: params[:user][:password])) )
+          logger.debug("User: #{@user.inspect}")
+          User.transaction do 
+            @social_profile = SocialProfile.find(@registration.social_profile_id) if @registration.social_profile_id
       
-            # verify that the registration has the idenity or set it if it is not ther
-            @registration.identity_id = @identity.id unless @registration.identity_id
-        
-            RolesUsers.create(user_id: @registration.user_id, role_id: Role.find_by_name(Role::DEVELOPER).id) 
+            params[:user].each do |key, value|
+              @user.send("#{key}=".to_sym, value) if @user.attributes.has_key? key
+            end 
+
+            if @social_profile && @social_profile.profile_image
+              @user.avatar_url = @social_profile.profile_image
+            else
+              @user.avatar_url = Gravatar.new(@user.email).image_url 
+            end if @user.avatar_url.blank?
+
+            if @user.new_record?
+              #flash.now[:info] = "<b>Your off to a great start.</b> Your account has been created"
+              @user.password = temp_password
+              @user.password_confirmation = temp_password
+            end
+            unless @user.save
+              flash[:error] = "Your user was not created, please address the form errors listed below and try again: <span>#{@user.errors.full_messages.join('<br>')}</span>"
+              redirect_to account_path
+            else
+              # sign in the new user unless he is already signed in
+              sign_in(@user) unless current_user
+      
+              @social_profile.update_attribute(:user_id, @user.id) if @social_profile && @user.id 
+              @identity = ((@registration && @registration.identity_id) ? Identity.find(@registration.identity_id) : Identity.create(provider: "groundfloor"))
+              @identity.update_attribute(:user_id,  @user.id)
+
+              @registration.user_id = @user.id
+    
+              # verify that the registration has the idenity or set it if it is not ther
+              @registration.identity_id = @identity.id unless @registration.identity_id
+      
+              RolesUsers.create(user_id: @registration.user_id, role_id: Role.find_by_name(Role::DEVELOPER).id) 
+            end
           end
         end
-      end
 
-      @profile = @registration.developer_profile_id ? DeveloperProfile.find(@registration.developer_profile_id) : DeveloperProfile.new(user_id: @registration.user_id)
-      session[:registration] = @registration
+        @profile = @registration.developer_profile_id ? DeveloperProfile.find(@registration.developer_profile_id) : DeveloperProfile.new(user_id: @registration.user_id)
+        session[:registration] = @registration
+      end
     else
       # if there is no registration someone came directly to this page so redirect them to the root
       redirect_to root_path
@@ -161,7 +171,9 @@ class RegistrationsController < ApplicationController
     if @projects.length > 0
       redirect_to :thanks
     else
-      render :action => :projects
+      @registration.has_projects = false
+      session[:registration] = @registration
+      redirect_to :projects
     end
   end
   
