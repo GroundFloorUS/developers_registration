@@ -5,6 +5,12 @@ class RegistrationsController < ApplicationController
   def set_registration
     @path = request.fullpath.split("?").first
     @registration = session[:registration]
+    
+    # If the person has an account and has logged in then we need to make sure they have a session
+    if current_user && @registration.nil?
+      @registration = Registration.new(user_id: current_user.id, name: current_user.name, first_name: current_user.first_name, last_name: current_user.last_name, has_projects: (current_user.projects.length > 0 ? true : false), completed: current_user.registration_completed) 
+      session[:registration] = @registration
+    end
     logger.debug("Registration: #{@registration.inspect}")
   end
   
@@ -89,7 +95,6 @@ class RegistrationsController < ApplicationController
   end
   
   def projects
-    logger.debug("Step: #{@registration.step}")
     saved = false
     
     if params[:developer_profile].present?
