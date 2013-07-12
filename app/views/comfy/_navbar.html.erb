@@ -22,7 +22,9 @@
   			</a>
       </div>
   </div>
-  <div class="span4">
-		<a href="<%= destroy_user_session_path %>" class="btn btn-info logout" data-method="delete" rel="nofollow"><i class="icon-home"></i>&nbsp; Log Out</a>
-  </div>
+  <% if current_user %>
+    <div class="span4">
+  		<a href="<%= destroy_user_session_path %>" class="btn btn-info logout" data-method="delete" rel="nofollow"><i class="icon-home"></i>&nbsp; Log Out</a>
+    </div>
+  <% end %>
 </div>

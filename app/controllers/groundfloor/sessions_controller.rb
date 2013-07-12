@@ -62,7 +62,7 @@ class Groundfloor::SessionsController < Devise::SessionsController
          @user = @identity.user
          session[:registration] = Registration.new(identity_id: @identity.id, user_id: @user.id, social_profile_id: @profile.id, name: @profile.name, first_name: @user.first_name, last_name: @user.last_name, developer_profile_id: (@user.developer_profile ? @user.developer_profile.id : nil), has_projects: (@user.projects.length > 0 ? true : false), completed: @user.registration_completed)
          sign_in(@user)
-         redirect_to @user.registation_url, notice: "Please finish registering"
+         redirect_to @user.registation_url
        else
 
          #social_profile user_id:integer type:string followers:integer friends:integer name:string location:string description:string username:string message_count:integer
