@@ -113,6 +113,8 @@ ActiveAdmin.register Project do
         end
       end
     end
+    
+    active_admin_comments
   end
   
   
