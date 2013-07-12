@@ -8,7 +8,6 @@ ActiveAdmin.register Project do
   filter :loan_to_value
   filter :capital_type
   filter :category
-  filter :partners
   
   index do
     selectable_column
@@ -36,9 +35,6 @@ ActiveAdmin.register Project do
     column "Category" do |project|
       project.category.present? ? project.category : "N/A"
     end
-    column "Partners" do |project|
-      project.partners.present? ? project.partners : "N/A"
-    end
   end
   
   show :title => :name do |project|
@@ -64,9 +60,6 @@ ActiveAdmin.register Project do
           end
           row :category do |project| 
             project.category.present? ? project.category : "N/A" 
-          end
-          row :partners do |project| 
-            project.partners.present? ? project.partners : "N/A"
           end
           row :status do |project| 
             project.status.present? ? project.status : "N/A"
@@ -117,7 +110,6 @@ ActiveAdmin.register Project do
           t.column("Loan To Debt") { |project| project.loan_to_value.present? ? project.loan_to_value : "N/A" }
           t.column("Capital Type") { |project| project.capital_type.present? ? project.capital_type : "N/A" }
           t.column("Category") { |project| project.category.present? ? project.category : "N/A" }
-          t.column("Partners Involved") { |project| project.partners.present? ? project.partners : "N/A" }
         end
       end
     end
