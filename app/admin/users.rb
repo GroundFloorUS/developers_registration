@@ -19,6 +19,12 @@ ActiveAdmin.register User do
     column "Number Of Projects" do |user|
       user.projects.count
     end
+    column "Profile" do |user|
+      user.developer_profile.present? ? "Yes" : "No"
+    end
+    column "Social Links" do |user|
+      user.social_profiles.length
+    end
     column :sign_in_count
     column :current_sign_in_at
     column :last_sign_in_at

@@ -53,7 +53,7 @@
             </div>
             <div class="question">
               <label>How did you hear about us?</label>
-							<%= f.select :how_did_you_hear, DeveloperProfile::WHERE_DID_YOU_HEAR, { include_blank: true }, { }%>
+							<%= f.select :how_did_you_hear, DeveloperProfile::WHERE_DID_YOU_HEAR, { include_blank: "Please Select An Outlet" }, { }%>
             </div>
             <div class="<%= @profile.how_response.blank? ? "input-friend" : "" %>" id="friend">
               <label id="friend_label" for="input-friend"></label>
